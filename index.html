@@ -23,16 +23,16 @@
   <link rel="manifest" href="/manifest.json" />
   <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#f6f2e6" />
-  <script>try{sessionStorage.f||(sessionStorage.f=1,document.documentElement.classList.add('fade'))}catch(e){}</script>
-  <link rel="preload" href="/fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/literata.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/instrument-sans-italic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/literata-italic.woff2" as="font" type="font/woff2" crossorigin />
   <style>
 /* Critical CSS inlined so the homepage needs no stylesheet request. The base block mirrors /site.css. */
 @font-face{font-family:"Bricolage Grotesque";src:url(/fonts/bricolage-grotesque.woff2) format("woff2");font-weight:500 800;font-style:normal;font-display:swap}
 @font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
-:root{--bg:#f6f2e6;--fg:#1c1b17;--dim:#6a6860;--line:#e2ddcf;--display:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;--text:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@font-face{font-family:"Literata";src:url(/fonts/literata.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Literata";src:url(/fonts/literata-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
+:root{--bg:#f6f2e6;--fg:#1c1b17;--dim:#6a6860;--line:#e2ddcf;--display:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;--text:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--serif:"Literata",Georgia,"Times New Roman",serif}
 *{box-sizing:border-box}
 html{background:var(--bg);-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--text);-webkit-font-smoothing:antialiased}
@@ -43,9 +43,6 @@ a:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
 h1,h2{font-family:var(--display);letter-spacing:-.02em}
 p{margin:0 0 16px}
 em{font-style:italic}
-@keyframes fade-in{from{opacity:0}to{opacity:1}}
-.fade body{animation:fade-in .45s ease-out}
-@media (prefers-reduced-motion:reduce){.fade body{animation:none}}
 .head{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:48px}
 .head h1{margin:0;font-size:20px;font-weight:700;line-height:1.2}
 .icons{display:flex;gap:14px}
@@ -53,8 +50,12 @@ em{font-style:italic}
 .icons a:hover{color:var(--fg)}
 .icons svg{width:16px;height:16px;fill:currentColor}
 .icons svg.s{fill:none;stroke:currentColor;stroke-width:2}
-.quote{margin:0 0 32px;padding-left:14px;border-left:2px solid var(--line);color:var(--dim);font-style:italic}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
+body{animation:fade-in .7s ease-in-out both}
+.quote,.bio{font-family:var(--serif)}
+.quote{margin:0 0 32px;padding-left:14px;border-left:2px solid var(--line);color:var(--dim);font-size:17px;line-height:1.6;font-style:italic}
 .quote p{margin:0}
+.bio p{font-size:17px;line-height:1.65}
 .bio a{text-decoration:underline;text-decoration-color:var(--dim);text-underline-offset:3px}
 h2.label{margin:48px 0 6px;color:var(--dim);font:400 11px/1.4 var(--text);letter-spacing:.08em;text-transform:uppercase}
 ul.list{margin:0;padding:0;list-style:none}
