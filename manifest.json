@@ -4,8 +4,8 @@
   "description": "Photographer, Filmmaker & Data Scientist",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#090909",
-  "theme_color": "#090909",
+  "background_color": "#f6f2e6",
+  "theme_color": "#f6f2e6",
   "icons": [
     {
       "src": "/favicon-48.png",

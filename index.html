@@ -22,9 +22,11 @@
   <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png" />
   <link rel="manifest" href="manifest.json" />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#f6f2e6" />
+  <link rel="preload" href="fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="site.css?v=20260919" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -43,40 +45,10 @@
     ]
   }
   </script>
-  <style>
-    :root { --bg:#0e0e0e; --fg:#e6e6e6; --dim:#8a8a8a; --line:#262626; }
-    @media (prefers-color-scheme: light) {
-      :root { --bg:#fafaf8; --fg:#1c1c1c; --dim:#767676; --line:#e2e2de; }
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
-    main { max-width: 600px; margin: 0 auto; padding: 64px 24px 120px; }
-    a { color: inherit; }
-    a:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
-    header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 48px; }
-    h1 { margin: 0; font-size: 15px; font-weight: 600; }
-    .role { margin: 2px 0 0; color: var(--dim); font-size: 13px; }
-    .icons { display: flex; gap: 14px; padding-top: 3px; }
-    .icons a { display: flex; color: var(--dim); }
-    .icons a:hover { color: var(--fg); }
-    .icons svg { width: 16px; height: 16px; fill: currentColor; }
-    .icons svg.s { fill: none; stroke: currentColor; stroke-width: 2; }
-    p { margin: 0 0 16px; }
-    p a { text-decoration: underline; text-decoration-color: var(--dim); text-underline-offset: 3px; }
-    h2 { margin: 48px 0 6px; color: var(--dim); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
-    ul { margin: 0; padding: 0; list-style: none; }
-    li a { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 7px 0; text-decoration: none; }
-    li a:hover .t { text-decoration: underline; text-underline-offset: 3px; }
-    .d { color: var(--dim); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap; }
-    .t .d { margin-left: 6px; }
-    .photos { position: fixed; right: 16px; bottom: 16px; display: flex; align-items: center; gap: 7px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg); color: var(--dim); font-size: 12px; text-decoration: none; }
-    .photos:hover { color: var(--fg); border-color: var(--dim); }
-    .photos svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-  </style>
 </head>
 <body>
   <main>
-    <header>
+    <header class="head">
       <div>
         <h1>Shay Kashif</h1>
         <p class="role">Photographer · Filmmaker · Data Scientist</p>
@@ -89,15 +61,16 @@
       </nav>
     </header>
 
-    <p>Hey, I'm Shay! I split my time between framing shots and tinkering with computers. Photography taught me to find signal in noise; data science gave me the tools to prove it.</p>
-    <p>Whether I'm behind a lens or inside a spreadsheet, I'm chasing the same thing: a clear, honest picture of how things really work, inside and out.</p>
-    <p>In summer 2025 I was a full-time analyst at Merton Capital Partners, researching affordable housing policy in the U.S. and South Florida. I've also built <a href="map-oakland-redlining.html">an interactive map of how redlining shaped Oakland</a> and <a href="https://github.com/shaykashif" target="_blank" rel="noopener">an off-grid LoRa radio network</a>, and some of my writing has been published in <em>The Exonian</em>.</p>
-    <p>Say hi at <a href="mailto:shay@shaykas.com">shay@shaykas.com</a>.</p>
+    <div class="bio">
+      <p>Hey, I'm Shay! I split my time between framing shots and tinkering with computers. Photography taught me to find signal in noise; data science gave me the tools to prove it.</p>
+      <p>Whether I'm behind a lens or inside a spreadsheet, I'm chasing the same thing: a clear, honest picture of how things really work, inside and out.</p>
+      <p>In summer 2025 I was a full-time analyst at Merton Capital Partners, researching affordable housing policy in the U.S. and South Florida. I've also built <a href="map-oakland-redlining.html">an interactive map of how redlining shaped Oakland</a>, and some of my writing has been published in <em>The Exonian</em>.</p>
+      <p>Say hi at <a href="mailto:shay@shaykas.com">shay@shaykas.com</a>.</p>
+    </div>
 
-    <h2>Writing</h2>
-    <ul>
+    <h2 class="label">Writing</h2>
+    <ul class="list">
       <li><a href="article-masthead.html"><span class="t">What the Masthead Tells Us <span class="d">2025–26</span></span><span class="d">Research</span></a></li>
-      <li><a href="belisa.html"><span class="t">Belisa — A Merchant of Words <span class="d">2026</span></span><span class="d">Interactive</span></a></li>
       <li><a href="article-searching-american-dream.html"><span class="t">Searching for the American Dream <span class="d">2026</span></span><span class="d">Essay</span></a></li>
       <li><a href="article-men-dont-cry.html"><span class="t">Men Don't Cry <span class="d">2025</span></span><span class="d">Essay</span></a></li>
       <li><a href="essay-kreuzberg.html"><span class="t">Golden Hour: Kreuzberg <span class="d">2025</span></span><span class="d">Photo essay</span></a></li>
@@ -105,10 +78,9 @@
       <li><a href="article-before-sunrise.html"><span class="t">Before Sunrise <span class="d">2024</span></span><span class="d">Essay</span></a></li>
     </ul>
 
-    <h2>Projects</h2>
-    <ul>
+    <h2 class="label">Projects</h2>
+    <ul class="list">
       <li><a href="map-oakland-redlining.html"><span class="t">Redlining's Lasting Effects <span class="d">2025</span></span><span class="d">Map</span></a></li>
-      <li><a href="https://github.com/shaykashif" target="_blank" rel="noopener"><span class="t">LoRa Radio <span class="d">2024</span></span><span class="d">Hardware</span></a></li>
     </ul>
   </main>
 
@@ -116,6 +88,5 @@
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>
     Photos
   </a>
-
 </body>
 </html>

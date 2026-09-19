@@ -20,163 +20,142 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="favicon-192.png" />
-  <meta name="color-scheme" content="dark light" />
-  <meta name="theme-color" content="#0e0e0e" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#fafaf8" media="(prefers-color-scheme: light)" />
-  <style>
-    :root { --bg:#0e0e0e; --fg:#e6e6e6; --dim:#8a8a8a; --line:#262626; }
-    @media (prefers-color-scheme: light) {
-      :root { --bg:#fafaf8; --fg:#1c1c1c; --dim:#767676; --line:#e2e2de; }
-    }
-    * { box-sizing: border-box; }
-    body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
-    main { max-width: 1100px; margin: 0 auto; padding: 48px 24px 96px; }
-    a { color: inherit; }
-    a:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
-    header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 40px; }
-    header a { color: var(--dim); font-size: 14px; text-decoration: none; }
-    header a:hover { color: var(--fg); }
-    h1 { margin: 0; font-size: 15px; font-weight: 600; }
-    section { margin-bottom: 48px; }
-    h2 { margin: 0 0 12px; color: var(--dim); font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
-    h2 a { text-decoration: none; color: var(--fg); }
-    h2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    h2 span { margin-left: 6px; }
-    .grid { columns: 3 240px; column-gap: 6px; }
-    .grid a { display: block; margin-bottom: 6px; break-inside: avoid; }
-    .grid img { display: block; width: 100%; height: auto; background: var(--line); }
-  </style>
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#f6f2e6" />
+  <link rel="preload" href="fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="site.css?v=20260919" />
 </head>
-<body>
+<body class="page-photos">
   <main>
-    <header>
+    <header class="top">
       <a href="index.html">&larr; Shay Kashif</a>
-      <h1>Photos <span style="color:var(--dim);font-weight:400">90</span></h1>
+      <strong>Photos <span>90</span></strong>
     </header>
 
-    <section>
+    <section class="set">
       <h2><a href="essay-kreuzberg.html">Golden Hour: Kreuzberg</a> <span>12</span></h2>
       <div class="grid">
-      <a href="Kreuzberg/web/IMG_1104.webp"><img src="Kreuzberg/thumb/IMG_1104.webp" width="720" height="404" alt="Golden Hour: Kreuzberg, photo 1" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-002.webp"><img src="Kreuzberg/thumb/r002-002.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 2" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-003.webp"><img src="Kreuzberg/thumb/r002-003.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 3" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-004.webp"><img src="Kreuzberg/thumb/r002-004.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 4" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-005.webp"><img src="Kreuzberg/thumb/r002-005.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 5" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-006.webp"><img src="Kreuzberg/thumb/r002-006.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 6" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-007.webp"><img src="Kreuzberg/thumb/r002-007.webp" width="488" height="720" alt="Golden Hour: Kreuzberg, photo 7" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/IMG_6518.webp"><img src="Kreuzberg/thumb/IMG_6518.webp" width="540" height="720" alt="Golden Hour: Kreuzberg, photo 8" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-008.webp"><img src="Kreuzberg/thumb/r002-008.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 9" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-009.webp"><img src="Kreuzberg/thumb/r002-009.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 10" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-010.webp"><img src="Kreuzberg/thumb/r002-010.webp" width="488" height="720" alt="Golden Hour: Kreuzberg, photo 11" loading="lazy" decoding="async" /></a>
-      <a href="Kreuzberg/web/r002-011.webp"><img src="Kreuzberg/thumb/r002-011.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 12" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/IMG_1104.webp"><img src="Kreuzberg/thumb/IMG_1104.webp" width="720" height="404" alt="Golden Hour: Kreuzberg, photo 1" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-002.webp"><img src="Kreuzberg/thumb/r002-002.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 2" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-003.webp"><img src="Kreuzberg/thumb/r002-003.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 3" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-004.webp"><img src="Kreuzberg/thumb/r002-004.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 4" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-005.webp"><img src="Kreuzberg/thumb/r002-005.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 5" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-006.webp"><img src="Kreuzberg/thumb/r002-006.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 6" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-007.webp"><img src="Kreuzberg/thumb/r002-007.webp" width="488" height="720" alt="Golden Hour: Kreuzberg, photo 7" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/IMG_6518.webp"><img src="Kreuzberg/thumb/IMG_6518.webp" width="540" height="720" alt="Golden Hour: Kreuzberg, photo 8" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-008.webp"><img src="Kreuzberg/thumb/r002-008.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 9" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-009.webp"><img src="Kreuzberg/thumb/r002-009.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 10" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-010.webp"><img src="Kreuzberg/thumb/r002-010.webp" width="488" height="720" alt="Golden Hour: Kreuzberg, photo 11" loading="lazy" decoding="async" /></a>
+        <a href="Kreuzberg/web/r002-011.webp"><img src="Kreuzberg/thumb/r002-011.webp" width="720" height="488" alt="Golden Hour: Kreuzberg, photo 12" loading="lazy" decoding="async" /></a>
       </div>
     </section>
 
-    <section>
+    <section class="set">
       <h2><a href="gallery-hyde-park.html">Hyde Park, London</a> <span>26</span></h2>
       <div class="grid">
-      <a href="HydePark/web/00270005.webp"><img src="HydePark/thumb/00270005.webp" width="720" height="478" alt="Hyde Park, London, photo 1" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270006.webp"><img src="HydePark/thumb/00270006.webp" width="720" height="478" alt="Hyde Park, London, photo 2" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270008.webp"><img src="HydePark/thumb/00270008.webp" width="720" height="478" alt="Hyde Park, London, photo 3" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270010.webp"><img src="HydePark/thumb/00270010.webp" width="478" height="720" alt="Hyde Park, London, photo 4" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270011.webp"><img src="HydePark/thumb/00270011.webp" width="478" height="720" alt="Hyde Park, London, photo 5" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270012.webp"><img src="HydePark/thumb/00270012.webp" width="720" height="478" alt="Hyde Park, London, photo 6" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270013.webp"><img src="HydePark/thumb/00270013.webp" width="720" height="478" alt="Hyde Park, London, photo 7" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270014.webp"><img src="HydePark/thumb/00270014.webp" width="478" height="720" alt="Hyde Park, London, photo 8" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270015.webp"><img src="HydePark/thumb/00270015.webp" width="720" height="478" alt="Hyde Park, London, photo 9" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270020.webp"><img src="HydePark/thumb/00270020.webp" width="478" height="720" alt="Hyde Park, London, photo 10" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270021.webp"><img src="HydePark/thumb/00270021.webp" width="720" height="478" alt="Hyde Park, London, photo 11" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270022.webp"><img src="HydePark/thumb/00270022.webp" width="720" height="478" alt="Hyde Park, London, photo 12" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270023.webp"><img src="HydePark/thumb/00270023.webp" width="720" height="478" alt="Hyde Park, London, photo 13" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270025.webp"><img src="HydePark/thumb/00270025.webp" width="720" height="478" alt="Hyde Park, London, photo 14" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270026.webp"><img src="HydePark/thumb/00270026.webp" width="720" height="478" alt="Hyde Park, London, photo 15" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270028.webp"><img src="HydePark/thumb/00270028.webp" width="720" height="478" alt="Hyde Park, London, photo 16" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270029.webp"><img src="HydePark/thumb/00270029.webp" width="720" height="478" alt="Hyde Park, London, photo 17" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270031.webp"><img src="HydePark/thumb/00270031.webp" width="720" height="478" alt="Hyde Park, London, photo 18" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270032.webp"><img src="HydePark/thumb/00270032.webp" width="478" height="720" alt="Hyde Park, London, photo 19" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270033.webp"><img src="HydePark/thumb/00270033.webp" width="720" height="478" alt="Hyde Park, London, photo 20" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270034.webp"><img src="HydePark/thumb/00270034.webp" width="478" height="720" alt="Hyde Park, London, photo 21" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270035.webp"><img src="HydePark/thumb/00270035.webp" width="478" height="720" alt="Hyde Park, London, photo 22" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270036.webp"><img src="HydePark/thumb/00270036.webp" width="720" height="478" alt="Hyde Park, London, photo 23" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270037.webp"><img src="HydePark/thumb/00270037.webp" width="720" height="478" alt="Hyde Park, London, photo 24" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270038.webp"><img src="HydePark/thumb/00270038.webp" width="720" height="478" alt="Hyde Park, London, photo 25" loading="lazy" decoding="async" /></a>
-      <a href="HydePark/web/00270039.webp"><img src="HydePark/thumb/00270039.webp" width="478" height="720" alt="Hyde Park, London, photo 26" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270005.webp"><img src="HydePark/thumb/00270005.webp" width="720" height="478" alt="Hyde Park, London, photo 1" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270006.webp"><img src="HydePark/thumb/00270006.webp" width="720" height="478" alt="Hyde Park, London, photo 2" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270008.webp"><img src="HydePark/thumb/00270008.webp" width="720" height="478" alt="Hyde Park, London, photo 3" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270010.webp"><img src="HydePark/thumb/00270010.webp" width="478" height="720" alt="Hyde Park, London, photo 4" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270011.webp"><img src="HydePark/thumb/00270011.webp" width="478" height="720" alt="Hyde Park, London, photo 5" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270012.webp"><img src="HydePark/thumb/00270012.webp" width="720" height="478" alt="Hyde Park, London, photo 6" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270013.webp"><img src="HydePark/thumb/00270013.webp" width="720" height="478" alt="Hyde Park, London, photo 7" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270014.webp"><img src="HydePark/thumb/00270014.webp" width="478" height="720" alt="Hyde Park, London, photo 8" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270015.webp"><img src="HydePark/thumb/00270015.webp" width="720" height="478" alt="Hyde Park, London, photo 9" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270020.webp"><img src="HydePark/thumb/00270020.webp" width="478" height="720" alt="Hyde Park, London, photo 10" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270021.webp"><img src="HydePark/thumb/00270021.webp" width="720" height="478" alt="Hyde Park, London, photo 11" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270022.webp"><img src="HydePark/thumb/00270022.webp" width="720" height="478" alt="Hyde Park, London, photo 12" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270023.webp"><img src="HydePark/thumb/00270023.webp" width="720" height="478" alt="Hyde Park, London, photo 13" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270025.webp"><img src="HydePark/thumb/00270025.webp" width="720" height="478" alt="Hyde Park, London, photo 14" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270026.webp"><img src="HydePark/thumb/00270026.webp" width="720" height="478" alt="Hyde Park, London, photo 15" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270028.webp"><img src="HydePark/thumb/00270028.webp" width="720" height="478" alt="Hyde Park, London, photo 16" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270029.webp"><img src="HydePark/thumb/00270029.webp" width="720" height="478" alt="Hyde Park, London, photo 17" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270031.webp"><img src="HydePark/thumb/00270031.webp" width="720" height="478" alt="Hyde Park, London, photo 18" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270032.webp"><img src="HydePark/thumb/00270032.webp" width="478" height="720" alt="Hyde Park, London, photo 19" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270033.webp"><img src="HydePark/thumb/00270033.webp" width="720" height="478" alt="Hyde Park, London, photo 20" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270034.webp"><img src="HydePark/thumb/00270034.webp" width="478" height="720" alt="Hyde Park, London, photo 21" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270035.webp"><img src="HydePark/thumb/00270035.webp" width="478" height="720" alt="Hyde Park, London, photo 22" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270036.webp"><img src="HydePark/thumb/00270036.webp" width="720" height="478" alt="Hyde Park, London, photo 23" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270037.webp"><img src="HydePark/thumb/00270037.webp" width="720" height="478" alt="Hyde Park, London, photo 24" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270038.webp"><img src="HydePark/thumb/00270038.webp" width="720" height="478" alt="Hyde Park, London, photo 25" loading="lazy" decoding="async" /></a>
+        <a href="HydePark/web/00270039.webp"><img src="HydePark/thumb/00270039.webp" width="478" height="720" alt="Hyde Park, London, photo 26" loading="lazy" decoding="async" /></a>
       </div>
     </section>
 
-    <section>
+    <section class="set">
       <h2><a href="gallery-winter-pea.html">Winter at Exeter</a> <span>6</span></h2>
       <div class="grid">
-      <a href="WinterPEA/web/R1-03816-027A.webp"><img src="WinterPEA/thumb/R1-03816-027A.webp" width="720" height="481" alt="Winter at Exeter, photo 1" loading="lazy" decoding="async" /></a>
-      <a href="WinterPEA/web/R1-03816-029A.webp"><img src="WinterPEA/thumb/R1-03816-029A.webp" width="720" height="481" alt="Winter at Exeter, photo 2" loading="lazy" decoding="async" /></a>
-      <a href="WinterPEA/web/R1-03816-032A.webp"><img src="WinterPEA/thumb/R1-03816-032A.webp" width="720" height="481" alt="Winter at Exeter, photo 3" loading="lazy" decoding="async" /></a>
-      <a href="WinterPEA/web/R1-03816-034A.webp"><img src="WinterPEA/thumb/R1-03816-034A.webp" width="720" height="481" alt="Winter at Exeter, photo 4" loading="lazy" decoding="async" /></a>
-      <a href="WinterPEA/web/R1-03816-035A.webp"><img src="WinterPEA/thumb/R1-03816-035A.webp" width="720" height="481" alt="Winter at Exeter, photo 5" loading="lazy" decoding="async" /></a>
-      <a href="WinterPEA/web/R1-03816-036A.webp"><img src="WinterPEA/thumb/R1-03816-036A.webp" width="720" height="481" alt="Winter at Exeter, photo 6" loading="lazy" decoding="async" /></a>
+        <a href="WinterPEA/web/R1-03816-027A.webp"><img src="WinterPEA/thumb/R1-03816-027A.webp" width="720" height="481" alt="Winter at Exeter, photo 1" loading="lazy" decoding="async" /></a>
+        <a href="WinterPEA/web/R1-03816-029A.webp"><img src="WinterPEA/thumb/R1-03816-029A.webp" width="720" height="481" alt="Winter at Exeter, photo 2" loading="lazy" decoding="async" /></a>
+        <a href="WinterPEA/web/R1-03816-032A.webp"><img src="WinterPEA/thumb/R1-03816-032A.webp" width="720" height="481" alt="Winter at Exeter, photo 3" loading="lazy" decoding="async" /></a>
+        <a href="WinterPEA/web/R1-03816-034A.webp"><img src="WinterPEA/thumb/R1-03816-034A.webp" width="720" height="481" alt="Winter at Exeter, photo 4" loading="lazy" decoding="async" /></a>
+        <a href="WinterPEA/web/R1-03816-035A.webp"><img src="WinterPEA/thumb/R1-03816-035A.webp" width="720" height="481" alt="Winter at Exeter, photo 5" loading="lazy" decoding="async" /></a>
+        <a href="WinterPEA/web/R1-03816-036A.webp"><img src="WinterPEA/thumb/R1-03816-036A.webp" width="720" height="481" alt="Winter at Exeter, photo 6" loading="lazy" decoding="async" /></a>
       </div>
     </section>
 
-    <section>
+    <section class="set">
       <h2><a href="gallery-pea-fall.html">PEA Fall</a> <span>22</span></h2>
       <div class="grid">
-      <a href="PEA%20Fall/web/R1-00671-030A.webp"><img src="PEA%20Fall/thumb/R1-00671-030A.webp" width="720" height="481" alt="PEA Fall, photo 1" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00673-004A.webp"><img src="PEA%20Fall/thumb/R1-00673-004A.webp" width="720" height="481" alt="PEA Fall, photo 2" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00673-007A.webp"><img src="PEA%20Fall/thumb/R1-00673-007A.webp" width="720" height="481" alt="PEA Fall, photo 3" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00673-010A.webp"><img src="PEA%20Fall/thumb/R1-00673-010A.webp" width="720" height="481" alt="PEA Fall, photo 4" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00673-034A.webp"><img src="PEA%20Fall/thumb/R1-00673-034A.webp" width="720" height="481" alt="PEA Fall, photo 5" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0001.webp"><img src="PEA%20Fall/thumb/R1-00674-0001.webp" width="481" height="720" alt="PEA Fall, photo 6" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0010.webp"><img src="PEA%20Fall/thumb/R1-00674-0010.webp" width="481" height="720" alt="PEA Fall, photo 7" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0011.webp"><img src="PEA%20Fall/thumb/R1-00674-0011.webp" width="720" height="481" alt="PEA Fall, photo 8" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0014.webp"><img src="PEA%20Fall/thumb/R1-00674-0014.webp" width="720" height="481" alt="PEA Fall, photo 9" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0015.webp"><img src="PEA%20Fall/thumb/R1-00674-0015.webp" width="720" height="481" alt="PEA Fall, photo 10" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0016.webp"><img src="PEA%20Fall/thumb/R1-00674-0016.webp" width="720" height="481" alt="PEA Fall, photo 11" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0017.webp"><img src="PEA%20Fall/thumb/R1-00674-0017.webp" width="720" height="481" alt="PEA Fall, photo 12" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0036-2.webp"><img src="PEA%20Fall/thumb/R1-00674-0036-2.webp" width="720" height="481" alt="PEA Fall, photo 13" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0036.webp"><img src="PEA%20Fall/thumb/R1-00674-0036.webp" width="720" height="481" alt="PEA Fall, photo 14" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-00674-0037.webp"><img src="PEA%20Fall/thumb/R1-00674-0037.webp" width="720" height="481" alt="PEA Fall, photo 15" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-01134-017A.webp"><img src="PEA%20Fall/thumb/R1-01134-017A.webp" width="720" height="481" alt="PEA Fall, photo 16" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-01134-020A.webp"><img src="PEA%20Fall/thumb/R1-01134-020A.webp" width="720" height="481" alt="PEA Fall, photo 17" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-01134-021A.webp"><img src="PEA%20Fall/thumb/R1-01134-021A.webp" width="720" height="481" alt="PEA Fall, photo 18" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-01134-023A.webp"><img src="PEA%20Fall/thumb/R1-01134-023A.webp" width="720" height="481" alt="PEA Fall, photo 19" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-01134-024A.webp"><img src="PEA%20Fall/thumb/R1-01134-024A.webp" width="720" height="481" alt="PEA Fall, photo 20" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-01134-025A.webp"><img src="PEA%20Fall/thumb/R1-01134-025A.webp" width="720" height="481" alt="PEA Fall, photo 21" loading="lazy" decoding="async" /></a>
-      <a href="PEA%20Fall/web/R1-01134-026A.webp"><img src="PEA%20Fall/thumb/R1-01134-026A.webp" width="720" height="481" alt="PEA Fall, photo 22" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00671-030A.webp"><img src="PEA%20Fall/thumb/R1-00671-030A.webp" width="720" height="481" alt="PEA Fall, photo 1" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00673-004A.webp"><img src="PEA%20Fall/thumb/R1-00673-004A.webp" width="720" height="481" alt="PEA Fall, photo 2" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00673-007A.webp"><img src="PEA%20Fall/thumb/R1-00673-007A.webp" width="720" height="481" alt="PEA Fall, photo 3" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00673-010A.webp"><img src="PEA%20Fall/thumb/R1-00673-010A.webp" width="720" height="481" alt="PEA Fall, photo 4" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00673-034A.webp"><img src="PEA%20Fall/thumb/R1-00673-034A.webp" width="720" height="481" alt="PEA Fall, photo 5" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0001.webp"><img src="PEA%20Fall/thumb/R1-00674-0001.webp" width="481" height="720" alt="PEA Fall, photo 6" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0010.webp"><img src="PEA%20Fall/thumb/R1-00674-0010.webp" width="481" height="720" alt="PEA Fall, photo 7" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0011.webp"><img src="PEA%20Fall/thumb/R1-00674-0011.webp" width="720" height="481" alt="PEA Fall, photo 8" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0014.webp"><img src="PEA%20Fall/thumb/R1-00674-0014.webp" width="720" height="481" alt="PEA Fall, photo 9" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0015.webp"><img src="PEA%20Fall/thumb/R1-00674-0015.webp" width="720" height="481" alt="PEA Fall, photo 10" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0016.webp"><img src="PEA%20Fall/thumb/R1-00674-0016.webp" width="720" height="481" alt="PEA Fall, photo 11" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0017.webp"><img src="PEA%20Fall/thumb/R1-00674-0017.webp" width="720" height="481" alt="PEA Fall, photo 12" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0036-2.webp"><img src="PEA%20Fall/thumb/R1-00674-0036-2.webp" width="720" height="481" alt="PEA Fall, photo 13" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0036.webp"><img src="PEA%20Fall/thumb/R1-00674-0036.webp" width="720" height="481" alt="PEA Fall, photo 14" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-00674-0037.webp"><img src="PEA%20Fall/thumb/R1-00674-0037.webp" width="720" height="481" alt="PEA Fall, photo 15" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-01134-017A.webp"><img src="PEA%20Fall/thumb/R1-01134-017A.webp" width="720" height="481" alt="PEA Fall, photo 16" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-01134-020A.webp"><img src="PEA%20Fall/thumb/R1-01134-020A.webp" width="720" height="481" alt="PEA Fall, photo 17" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-01134-021A.webp"><img src="PEA%20Fall/thumb/R1-01134-021A.webp" width="720" height="481" alt="PEA Fall, photo 18" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-01134-023A.webp"><img src="PEA%20Fall/thumb/R1-01134-023A.webp" width="720" height="481" alt="PEA Fall, photo 19" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-01134-024A.webp"><img src="PEA%20Fall/thumb/R1-01134-024A.webp" width="720" height="481" alt="PEA Fall, photo 20" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-01134-025A.webp"><img src="PEA%20Fall/thumb/R1-01134-025A.webp" width="720" height="481" alt="PEA Fall, photo 21" loading="lazy" decoding="async" /></a>
+        <a href="PEA%20Fall/web/R1-01134-026A.webp"><img src="PEA%20Fall/thumb/R1-01134-026A.webp" width="720" height="481" alt="PEA Fall, photo 22" loading="lazy" decoding="async" /></a>
       </div>
     </section>
 
-    <section>
+    <section class="set">
       <h2><a href="gallery-sf-marin.html">SF &amp; Marin</a> <span>10</span></h2>
       <div class="grid">
-      <a href="SF%20Marin/web/R1-03816-003A.webp"><img src="SF%20Marin/thumb/R1-03816-003A.webp" width="720" height="481" alt="SF &amp; Marin, photo 1" loading="lazy" decoding="async" /></a>
-      <a href="SF%20Marin/web/R1-03816-005A.webp"><img src="SF%20Marin/thumb/R1-03816-005A.webp" width="720" height="481" alt="SF &amp; Marin, photo 2" loading="lazy" decoding="async" /></a>
-      <a href="SF%20Marin/web/R1-03816-010A.webp"><img src="SF%20Marin/thumb/R1-03816-010A.webp" width="720" height="481" alt="SF &amp; Marin, photo 3" loading="lazy" decoding="async" /></a>
-      <a href="SF%20Marin/web/R1-03816-013A.webp"><img src="SF%20Marin/thumb/R1-03816-013A.webp" width="720" height="481" alt="SF &amp; Marin, photo 4" loading="lazy" decoding="async" /></a>
-      <a href="SF%20Marin/web/R1-03816-015A.webp"><img src="SF%20Marin/thumb/R1-03816-015A.webp" width="481" height="720" alt="SF &amp; Marin, photo 5" loading="lazy" decoding="async" /></a>
-      <a href="SF%20Marin/web/R1-03816-016A.webp"><img src="SF%20Marin/thumb/R1-03816-016A.webp" width="481" height="720" alt="SF &amp; Marin, photo 6" loading="lazy" decoding="async" /></a>
-      <a href="SF%20Marin/web/R1-03816-017A.webp"><img src="SF%20Marin/thumb/R1-03816-017A.webp" width="481" height="720" alt="SF &amp; Marin, photo 7" loading="lazy" decoding="async" /></a>
-      <a href="SF%20Marin/web/R1-03816-018A.webp"><img src="SF%20Marin/thumb/R1-03816-018A.webp" width="481" height="720" alt="SF &amp; Marin, photo 8" loading="lazy" decoding="async" /></a>
-      <a href="SF%20Marin/web/R1-03816-019A.webp"><img src="SF%20Marin/thumb/R1-03816-019A.webp" width="720" height="481" alt="SF &amp; Marin, photo 9" loading="lazy" decoding="async" /></a>
-      <a href="SF%20Marin/web/R1-03816-026A.webp"><img src="SF%20Marin/thumb/R1-03816-026A.webp" width="720" height="481" alt="SF &amp; Marin, photo 10" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-003A.webp"><img src="SF%20Marin/thumb/R1-03816-003A.webp" width="720" height="481" alt="SF &amp; Marin, photo 1" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-005A.webp"><img src="SF%20Marin/thumb/R1-03816-005A.webp" width="720" height="481" alt="SF &amp; Marin, photo 2" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-010A.webp"><img src="SF%20Marin/thumb/R1-03816-010A.webp" width="720" height="481" alt="SF &amp; Marin, photo 3" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-013A.webp"><img src="SF%20Marin/thumb/R1-03816-013A.webp" width="720" height="481" alt="SF &amp; Marin, photo 4" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-015A.webp"><img src="SF%20Marin/thumb/R1-03816-015A.webp" width="481" height="720" alt="SF &amp; Marin, photo 5" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-016A.webp"><img src="SF%20Marin/thumb/R1-03816-016A.webp" width="481" height="720" alt="SF &amp; Marin, photo 6" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-017A.webp"><img src="SF%20Marin/thumb/R1-03816-017A.webp" width="481" height="720" alt="SF &amp; Marin, photo 7" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-018A.webp"><img src="SF%20Marin/thumb/R1-03816-018A.webp" width="481" height="720" alt="SF &amp; Marin, photo 8" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-019A.webp"><img src="SF%20Marin/thumb/R1-03816-019A.webp" width="720" height="481" alt="SF &amp; Marin, photo 9" loading="lazy" decoding="async" /></a>
+        <a href="SF%20Marin/web/R1-03816-026A.webp"><img src="SF%20Marin/thumb/R1-03816-026A.webp" width="720" height="481" alt="SF &amp; Marin, photo 10" loading="lazy" decoding="async" /></a>
       </div>
     </section>
 
-    <section>
+    <section class="set">
       <h2><a href="gallery-yosemite.html">Yosemite &amp; Summer</a> <span>14</span></h2>
       <div class="grid">
-      <a href="Yosemite%20and%20Summer/web/R1-00671-003A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00671-003A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 1" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00671-004A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00671-004A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 2" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00671-008A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00671-008A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 3" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00671-016A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00671-016A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 4" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00673-017A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-017A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 5" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00673-019A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-019A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 6" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00673-024A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-024A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 7" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00673-025A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-025A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 8" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00673-026A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-026A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 9" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00673-027A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-027A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 10" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00673-028A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-028A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 11" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00673-035A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-035A.webp" width="481" height="720" alt="Yosemite &amp; Summer, photo 12" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00673-036A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-036A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 13" loading="lazy" decoding="async" /></a>
-      <a href="Yosemite%20and%20Summer/web/R1-00674-0030.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00674-0030.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 14" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00671-003A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00671-003A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 1" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00671-004A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00671-004A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 2" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00671-008A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00671-008A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 3" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00671-016A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00671-016A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 4" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00673-017A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-017A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 5" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00673-019A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-019A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 6" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00673-024A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-024A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 7" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00673-025A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-025A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 8" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00673-026A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-026A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 9" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00673-027A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-027A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 10" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00673-028A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-028A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 11" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00673-035A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-035A.webp" width="481" height="720" alt="Yosemite &amp; Summer, photo 12" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00673-036A.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00673-036A.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 13" loading="lazy" decoding="async" /></a>
+        <a href="Yosemite%20and%20Summer/web/R1-00674-0030.webp"><img src="Yosemite%20and%20Summer/thumb/R1-00674-0030.webp" width="720" height="481" alt="Yosemite &amp; Summer, photo 14" loading="lazy" decoding="async" /></a>
       </div>
     </section>
   </main>

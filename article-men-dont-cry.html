@@ -18,79 +18,25 @@
   <meta name="twitter:description" content="On grief, silence, and masculinity — a personal essay written in the wake of loss. By Shay Kashif." />
   <meta name="twitter:image" content="https://shaykas.com/Headshot/Headshot.jpg" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --black: #090909; --grey-900: #111111; --grey-800: #1a1a1a;
-      --grey-700: #222222; --grey-600: #333333; --grey-400: #666666;
-      --grey-200: #999999; --grey-100: #cccccc; --white: #f2f2f2;
-      --gold: #e8d5a8; --cyan: #7ed4e6;
-      --font-serif: 'Playfair Display', Georgia, serif;
-      --font-sans: 'Inter', system-ui, sans-serif;
-      --ease: cubic-bezier(0.76,0,0.24,1);
-      --pad: clamp(24px, 6vw, 96px);
-    }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; }
-    body { background: var(--black); color: var(--white); font-family: var(--font-sans); font-weight: 300; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-    ::selection { background: var(--gold); color: var(--black); }
-    a { color: inherit; text-decoration: none; }
-    #grain {
-      position: fixed; inset: -50%; width: 200%; height: 200%;
-      pointer-events: none; z-index: 9000; opacity: 0.03;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      animation: grain 0.5s steps(1) infinite;
-    }
-    @keyframes grain {
-      0%,100%{transform:translate(0,0)} 10%{transform:translate(-2%,-3%)} 20%{transform:translate(3%,2%)}
-      30%{transform:translate(-1%,4%)} 40%{transform:translate(4%,-1%)} 50%{transform:translate(-3%,3%)}
-      60%{transform:translate(2%,-4%)} 70%{transform:translate(-4%,1%)} 80%{transform:translate(1%,-2%)} 90%{transform:translate(-2%,4%)}
-    }
-    nav {
-      position: sticky; top: 0; z-index: 500; padding: 18px var(--pad);
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(9,9,9,0.88); backdrop-filter: blur(20px) saturate(1.4);
-      -webkit-backdrop-filter: blur(20px) saturate(1.4); border-bottom: 1px solid var(--grey-800);
-    }
-    .nav-back { display: inline-flex; align-items: center; gap: 9px; font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--grey-400); transition: color .25s; }
-    .nav-back:hover { color: var(--white); }
-    .nav-site { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--grey-600); }
-    .article-meta { max-width: 780px; margin: 0 auto; padding: clamp(56px, 9vh, 100px) var(--pad) 0; }
-    .article-pub { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-    .article-title { font-family: var(--font-serif); font-size: clamp(40px, 7vw, 88px); font-weight: 400; line-height: .93; letter-spacing: -.025em; margin-bottom: 36px; }
-    .article-byline { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--grey-400); padding-top: 20px; border-top: 1px solid var(--grey-800); }
-    .article-body { max-width: 680px; margin: 0 auto; padding: 56px var(--pad) clamp(80px, 14vh, 140px); }
-    .article-body p { font-size: 18px; line-height: 1.82; color: var(--grey-200); margin-bottom: 28px; font-weight: 300; }
-    .article-body em { font-style: italic; }
-    .article-body strong { font-weight: 500; color: var(--white); }
-    .article-epigraph {
-      font-style: italic; color: var(--grey-400); border-left: 2px solid var(--grey-700);
-      padding: 4px 0 4px 20px; margin: 8px 0 40px; font-size: 16px; line-height: 1.7;
-    }
-    @media (max-width: 600px) { .article-body p { font-size: 16px; } }
-  </style>
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#f6f2e6" />
+  <link rel="preload" href="fonts/instrument-sans.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="site.css?v=20260919" />
 </head>
 <body>
-  <div id="grain"></div>
-  <nav>
-    <a href="index.html" class="nav-back">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Back
-    </a>
-    <span class="nav-site">shaykas.com</span>
-  </nav>
+  <main>
+    <header class="top">
+      <a href="index.html">&larr; Shay Kashif</a>
+    </header>
 
-  <div class="article-meta">
+    <div class="article-meta">
     <p class="article-pub">Personal Essay</p>
     <h1 class="article-title">Men Don't Cry</h1>
     <p class="article-byline">Shay Kashif · 2025</p>
   </div>
 
-  <article class="article-body">
+    <article class="article-body">
     <p class="article-epigraph">"Be thou assured, if words be made of breath and breath of life, I have no life to breathe."</p>
 
     <p>The silence is what I remember most about learning Nana had passed away. No hysterical reactions, no tears, and not even faces buried in hands. Just a solemn, all encompassing, sacred silence accompanied by eyes suspended in deep thought, staring off into infinity — past the walls of the house, past the crisp air of an autumn California night, and past Earth into some far-away dimension.</p>
@@ -105,5 +51,6 @@
 
     <p>Sometimes, I wonder where I first attributed crying to weakness. No one ever told me that directly, but growing up in a family and culture where men are expected to accept the situation and be the "pillar" of the family that their wives and daughters can rely on, I always assumed it must be true. When my dad's dad passed away — three years before Nana, yet just as suddenly and abruptly — my dad didn't cry either. His face turned to stone and his usually sarcastic humor disappeared. Around us, there was no display of emotion, only pragmatic, detached statements of how everyone has to die someday. It was only one night that, by chance, I stumbled upon my dad quietly sobbing alone in his bedroom, while my mom cleaned up the kitchen downstairs. When I was younger, I took the furtive manner in which my dad finally embraced his emotions as a sign that crying was something to be ashamed of — something emasculating. Getting older though, I wish he had been comfortable enough to share those emotions with his family, because I know we would've readily supported him. I've realized that it's <em>human</em> to cry, and to do so in spite of intense perceived social pressure is one the most courageous things one can do. It may not be pretty, but perhaps that's what really makes a man — embracing your feelings, not running away from them.</p>
   </article>
+  </main>
 </body>
 </html>
