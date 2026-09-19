@@ -3,9 +3,15 @@
 
   <url>
     <loc>https://shaykas.com/</loc>
-    <lastmod>2026-09-14</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://shaykas.com/photos.html</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://shaykas.com/article-searching-american-dream.html</loc>
