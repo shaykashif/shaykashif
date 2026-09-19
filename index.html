@@ -23,19 +23,18 @@
   <link rel="manifest" href="/manifest.json" />
   <meta name="color-scheme" content="light" />
   <meta name="theme-color" content="#f6f2e6" />
-  <link rel="preload" href="/fonts/literata.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/literata-italic.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/schibsted-grotesk-italic.woff2" as="font" type="font/woff2" crossorigin />
   <style>
 /* Critical CSS inlined so the homepage needs no stylesheet request. The base block mirrors /site.css. */
 @font-face{font-family:"Bricolage Grotesque";src:url(/fonts/bricolage-grotesque.woff2) format("woff2");font-weight:500 800;font-style:normal;font-display:swap}
-@font-face{font-family:"Instrument Sans";src:url(/fonts/instrument-sans.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Literata";src:url(/fonts/literata.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Literata";src:url(/fonts/literata-italic.woff2) format("woff2");font-weight:400;font-style:italic;font-display:swap}
-:root{--bg:#f6f2e6;--fg:#1c1b17;--dim:#6a6860;--line:#e2ddcf;--display:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;--text:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--serif:"Literata",Georgia,"Times New Roman",serif}
+@font-face{font-family:"Schibsted Grotesk";src:url(/fonts/schibsted-grotesk.woff2) format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Schibsted Grotesk";src:url(/fonts/schibsted-grotesk-italic.woff2) format("woff2");font-weight:450;font-style:italic;font-display:swap}
+:root{--bg:#f6f2e6;--fg:#1c1b17;--dim:#6a6860;--line:#e2ddcf;--display:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;--text:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 *{box-sizing:border-box}
 html{background:var(--bg);-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--text);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--text);font-weight:450;-webkit-font-smoothing:antialiased}
 main{max-width:600px;margin:0 auto;padding:64px 24px 120px}
 main.wide{max-width:680px}
 a{color:inherit}
@@ -52,7 +51,6 @@ em{font-style:italic}
 .icons svg.s{fill:none;stroke:currentColor;stroke-width:2}
 @keyframes fade-in{from{opacity:0}to{opacity:1}}
 body{animation:fade-in .7s ease-in-out both}
-.quote,.bio{font-family:var(--serif)}
 .quote{margin:0 0 32px;padding-left:14px;border-left:2px solid var(--line);color:var(--dim);font-size:17px;line-height:1.6;font-style:italic}
 .quote p{margin:0}
 .bio p{font-size:17px;line-height:1.65}
@@ -102,10 +100,10 @@ ul.list{margin:0;padding:0;list-style:none}
     </blockquote>
 
     <div class="bio">
-      <p>I'm the founder of tagme, a platform redefining how we find valuable connection in the digital age. If you'd like to check out tagme or read more about our mission, you can do so <a href="https://plstag.me">here</a>. If you're interested in what we're doing and would like to contribute, please shoot me an email at shay [at] plstag [dot] me.</p>
-      <p>Before tagme, I've worn many hats over the years, using technology to solve real-world problems. I've built decentralized LoRa networking software for disaster-resistant, zero-infrastructure communication, aggregate analysis software for IoT devices in geographic areas of interest, and simple, lightweight encryption libraries. I've also done recycling and wastewater research for EBMUD, analyzing turfgrass sustainability in the Bay Area.</p>
-      <p>Much of my work has also extended into the financial sector. I was previously an analyst at Merton Capital Partners, supporting the firm's mission of philanthropic private equity. I am currently designing a shadow pricing model for Buy Now, Pay Later (BNPL) loans, and am a strategic consultant at Boilermaker Consulting and an analyst at Boiler Quant.</p>
-      <p>Outside of all that, I also have an ardent passion for student journalism and defending free speech. I am a Director at the Purdue Student Publishing Foundation, the non-profit that oversees the award-winning Purdue Exponent—Indiana's largest collegiate newspaper, and one of two in the country to operate its own printing press. In the past, I was on the editorial board of The Exonian, the oldest high-school newspaper in America, and founded the Winton Oracle.</p>
+      <p>I'm the founder of <strong>tagme</strong>, a platform redefining how we find valuable connection in the digital age. If you'd like to check out <strong>tagme</strong> or read more about our mission, you can do so <a href="https://plstag.me" target="_blank" rel="noopener">here</a>. If you're interested in what we're doing and would like to contribute, please shoot me an email at shay [at] plstag [dot] me.</p>
+      <p>Before <strong>tagme</strong>, I've worn many hats over the years, using technology to solve real-world problems. I've built decentralized LoRa networking software for disaster-resistant, zero-infrastructure communication, aggregate analysis software for IoT devices in geographic areas of interest, and simple, lightweight encryption libraries. I've also done recycling and wastewater research for <a href="https://www.ebmud.com" target="_blank" rel="noopener">EBMUD</a>, analyzing turfgrass sustainability in the Bay Area.</p>
+      <p>Much of my work has also extended into the financial sector. I was previously an analyst at <a href="https://www.mertoncp.com" target="_blank" rel="noopener">Merton Capital Partners</a>, supporting the firm's mission of philanthropic private equity. I am currently designing a shadow pricing model for Buy Now, Pay Later (BNPL) loans, and am a strategic consultant at Boilermaker Consulting and an analyst at Boiler Quant.</p>
+      <p>Outside of all that, I also have an ardent passion for student journalism and defending free speech. I am a Director at the Purdue Student Publishing Foundation, the non-profit that oversees the award-winning <a href="https://www.purdueexponent.org" target="_blank" rel="noopener">Purdue Exponent</a>—Indiana's largest collegiate newspaper, and one of two in the country to operate its own printing press. In the past, I was on the editorial board of <a href="https://www.theexonian.com" target="_blank" rel="noopener">The Exonian</a>, the oldest high-school newspaper in America, and founded the <a href="https://sites.google.com/dlshs.org/thewintonoracle" target="_blank" rel="noopener">Winton Oracle</a>.</p>
       <p>This website is primarily just the radio station from which I broadcast my musings out into the cosmos, and it appears you have stumbled upon it. Feel free to say hi at shay [at] shaykas [dot] com.</p>
     </div>
 
