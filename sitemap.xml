@@ -20,6 +20,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://shaykas.com/article-in-the-alpine</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://shaykas.com/article-before-sunrise</loc>
     <lastmod>2026-09-20</lastmod>
     <changefreq>monthly</changefreq>
