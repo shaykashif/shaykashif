@@ -26,7 +26,6 @@
   <link rel="preload" href="/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/schibsted-grotesk-italic.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="modulepreload" href="/vendor/pretext.js" />
   <style>
 /* Critical CSS inlined so the homepage needs no stylesheet request. The base block mirrors /site.css. */
 @font-face{font-family:"Bricolage Grotesque";src:url(/fonts/bricolage-grotesque.woff2) format("woff2");font-weight:500 800;font-style:normal;font-display:swap}
@@ -69,22 +68,9 @@ ul.list{margin:0;padding:0;list-style:none}
 .photos{position:fixed;top:14px;right:14px;display:flex;padding:10px;color:var(--dim);line-height:0}
 .photos:hover{color:var(--fg)}
 .photos svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7}
-/* ── Ink sky + text dunes (homepage only; drawn by /desert.js) ── */
-html,body{overflow-x:clip}
+/* Paper: edges a shade warmer, like an old scroll, with a fine grain */
+html{background:radial-gradient(ellipse at center,rgba(140,110,60,0) 55%,rgba(140,110,60,.08) 100%) fixed,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .47 0 0 0 0 .39 0 0 0 0 .27 .3 0 0 0 -.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),var(--bg)}
 body{background:transparent}
-#sky{position:fixed;top:0;left:0;width:100%;height:100vh;height:100lvh;z-index:-1;pointer-events:none}
-.quote{position:relative}
-.quote p.flow{position:relative;transition:height .45s ease}
-.quote .ln{position:absolute;left:0;top:0;white-space:pre}
-.quote .moon{position:absolute;left:0;top:0;z-index:0;cursor:grab;touch-action:none;-webkit-user-select:none;user-select:none}
-.quote .moon.drag{cursor:grabbing}
-.quote .ln{z-index:1}
-.dunes{position:relative;width:100vw;height:clamp(280px,36vw,400px);margin:-40px calc(50% - 50vw) 0;-webkit-mask-image:linear-gradient(#000 76%,transparent);mask-image:linear-gradient(#000 76%,transparent)}
-.dunes canvas{display:block;width:100%;height:100%}
-.dunes+h2.label{margin-top:8px}
-h2.label{display:flex;align-items:center;gap:8px}
-h2.label::before{content:"";flex:none;width:9px;height:9px;background:var(--dim);opacity:.8;-webkit-mask:var(--star) center/contain no-repeat;mask:var(--star) center/contain no-repeat}
-:root{--star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-10 -10 20 20'%3E%3Cpath d='M0-10 2-4.8 7.1-7.1 4.8-2 10 0 4.8 2 7.1 7.1 2 4.8 0 10-2 4.8-7.1 7.1-4.8 2-10 0-4.8-2-7.1-7.1-2-4.8Z'/%3E%3C/svg%3E")}
   </style>
   <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.webp"}}]},"eagerness":"moderate"}]}</script>
   <script type="application/ld+json">
@@ -133,8 +119,6 @@ h2.label::before{content:"";flex:none;width:9px;height:9px;background:var(--dim)
     </div>
     </section>
 
-    <div class="dunes" aria-hidden="true"></div>
-
     <h2 class="label">Writing</h2>
     <ul class="list">
       <li><a href="/article-in-the-alpine"><span class="t">In the Alpine <span class="d">2026</span></span><span class="d">Essay</span></a></li>
@@ -162,6 +146,5 @@ h2.label::before{content:"";flex:none;width:9px;height:9px;background:var(--dim)
   <a class="photos" href="/photos" aria-label="Photos" title="Photos">
     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>
   </a>
-  <script type="module" src="/desert.js"></script>
 </body>
 </html>
