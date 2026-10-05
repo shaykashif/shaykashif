@@ -81,6 +81,16 @@ ul.list{margin:0;padding:0;list-style:none}
 /* Paper: edges a shade warmer, like an old scroll, with a fine grain */
 html{background:radial-gradient(ellipse at center,rgba(140,110,60,0) 55%,rgba(140,110,60,.08) 100%) fixed,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .47 0 0 0 0 .39 0 0 0 0 .27 .3 0 0 0 -.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),var(--bg)}
 body{background:transparent}
+/* Margin borders: a faint band down each side of the text column, ruled
+   and set with eight-pointed stars like the border of a Persian manuscript
+   page. Wide screens only, and not on the full-width photo grid. */
+@media (min-width:860px){
+body{position:relative;--half:300px}
+body:has(main.wide){--half:340px}
+body:not(.page-photos)::before,body:not(.page-photos)::after{content:"";position:absolute;top:40px;bottom:40px;width:24px;pointer-events:none;background:var(--fg);opacity:.14;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='32' viewBox='0 0 24 32' fill='none' stroke='black' stroke-width='.8'%3E%3Cpath d='M.5 0V32M2.5 0V32M21.5 0V32M23.5 0V32M12 0V9.5M12 22.5V32M7.4 11.4h9.2v9.2H7.4zM12 9.5l6.5 6.5-6.5 6.5-6.5-6.5z'/%3E%3Ccircle cx='12' cy='16' r='2'/%3E%3C/svg%3E") center top/24px 32px repeat-y,linear-gradient(transparent,#000 160px,#000 calc(100% - 160px),transparent);-webkit-mask-composite:source-in;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='32' viewBox='0 0 24 32' fill='none' stroke='black' stroke-width='.8'%3E%3Cpath d='M.5 0V32M2.5 0V32M21.5 0V32M23.5 0V32M12 0V9.5M12 22.5V32M7.4 11.4h9.2v9.2H7.4zM12 9.5l6.5 6.5-6.5 6.5-6.5-6.5z'/%3E%3Ccircle cx='12' cy='16' r='2'/%3E%3C/svg%3E") center top/24px 32px repeat-y,linear-gradient(transparent,#000 160px,#000 calc(100% - 160px),transparent);mask-composite:intersect}
+body::before{right:calc(50% + var(--half) + 40px)}
+body::after{left:calc(50% + var(--half) + 40px)}
+}
 :root[data-theme="dark"]{background:var(--bg)}
   </style>
   <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.webp"}}]},"eagerness":"moderate"}]}</script>
@@ -178,14 +188,15 @@ body{background:transparent}
     btn.addEventListener('click', function () { apply(root.dataset.theme === 'dark' ? 'light' : 'dark', true); });
   })();
 
-  // Clicking Photos: the page's text blows away letter by letter, left to
-  // right like wind, at a low frame rate; then the photos page opens. Coming
+  // Clicking Photos: the page's text blows away letter by letter like dust
+  // in the wind, sweeping left to right; then the photos page opens. Coming
   // back from Photos (its back arrow or the browser's Back button) plays it
   // in reverse, the letters drifting back in and settling into place.
   (function () {
     var link = document.querySelector('.photos'), main = document.querySelector('main');
     if (!link || !main || !link.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var FLAG = 'home-dissolved', STEPS = 'steps(14, end)';
+    var FLAG = 'home-dissolved';
+    var GUST = 'cubic-bezier(.55, .05, .75, .6)', SETTLE = 'cubic-bezier(.25, .4, .45, .95)';
     var played = [];
 
     // Wrap every letter in a span so it can move on its own. Words stay
@@ -240,25 +251,35 @@ body{background:transparent}
       return out;
     }
 
-    function scattered() {
-      return 'translate(' + (25 + Math.random() * 70) + 'px,' + (-10 - Math.random() * 45) + 'px) rotate(' + (Math.random() * 90 - 45) + 'deg)';
+    // A path for one grain: it lifts and swirls a little, then the wind
+    // carries it well away, shrinking as it goes. Every grain gets its own
+    // distance and direction so the letters spread out rather than clump.
+    function path() {
+      var dx = 120 + Math.random() * 280, dy = -75 + Math.random() * 95, turn = Math.random() * 160 - 80;
+      return [
+        { opacity: 1, transform: 'none' },
+        { opacity: .85, offset: .45, transform: 'translate(' + dx * .28 + 'px,' + (dy * .45 + (Math.random() - .5) * 30) + 'px) rotate(' + turn * .4 + 'deg)' },
+        { opacity: 0, transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(' + turn + 'deg) scale(.6)' }
+      ];
     }
 
-    // dir 'out': blow away, left edge first. dir 'in': drift back, the
-    // right edge (the last to leave) first. Returns when it ends (ms).
+    // dir 'out': blow away, left edge first. dir 'in': drift back along the
+    // same kind of path in reverse, the right edge (the last to leave) first.
+    // Returns when it ends (ms).
     function play(dir) {
-      var W = innerWidth, end = 0, here = { opacity: 1, transform: 'none' };
+      var W = innerWidth, end = 0;
       pieces().forEach(function (pr) {
-        var x = pr[1].left / W, dur = 520 + Math.random() * 380;
-        var delay = (dir === 'out' ? x : 1 - x) * 420 + Math.random() * 260;
-        var gone = { opacity: 0, transform: scattered() };
-        played.push(pr[0].animate(dir === 'out' ? [here, gone] : [gone, here],
-          { duration: dur, delay: delay, easing: STEPS, fill: dir === 'out' ? 'forwards' : 'backwards' }));
+        var x = pr[1].left / W, dur = 380 + Math.random() * 300;
+        var delay = (dir === 'out' ? x : 1 - x) * 240 + Math.random() * 120;
+        var frames = path();
+        if (dir === 'in') frames.reverse().forEach(function (f) { if (f.offset) f.offset = 1 - f.offset; });
+        played.push(pr[0].animate(frames,
+          { duration: dur, delay: delay, easing: dir === 'out' ? GUST : SETTLE, fill: dir === 'out' ? 'forwards' : 'backwards' }));
         end = Math.max(end, delay + dur);
       });
       var q = document.querySelector('.quote');
       if (q) played.push(q.animate([{ borderLeftColor: 'transparent', offset: dir === 'out' ? 1 : 0 }],
-        { duration: 500, delay: dir === 'out' ? 150 : 300, easing: STEPS, fill: dir === 'out' ? 'forwards' : 'backwards' }));
+        { duration: 400, delay: dir === 'out' ? 100 : 250, fill: dir === 'out' ? 'forwards' : 'backwards' }));
       return end;
     }
 
@@ -276,7 +297,7 @@ body{background:transparent}
       dustify();
       var href = link.href, end = play('out');
       try { sessionStorage.setItem(FLAG, '1'); } catch (err) {}
-      setTimeout(function () { location.href = href; }, end + 120);
+      setTimeout(function () { location.href = href; }, end + 80);
     });
 
     // Arriving back on a fresh load after the text blew away
