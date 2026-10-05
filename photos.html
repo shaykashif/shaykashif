@@ -20,11 +20,13 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png?v=2" />
   <link rel="apple-touch-icon" sizes="192x192" href="/favicon-192.png?v=2" />
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#f6f2e6" />
-  <link rel="preload" href="/fonts/schibsted-grotesk.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="/fonts/bricolage-grotesque.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/site.css?v=20260919d" />
+  <script>try{var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;if(t==="dark")document.querySelector('meta[name="theme-color"]').content="#151412"}catch(e){}</script>
+  <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("develop")</script>
+  <link rel="preload" href="/fonts/aktiv-grotesk-regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/aktiv-grotesk-semibold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/site.css?v=20261004a" />
   <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.webp"}}]},"eagerness":"moderate"}]}</script>
 </head>
 <body class="page-photos">
@@ -160,5 +162,63 @@
       </div>
     </section>
   </main>
+  <script>
+  // Each photo materializes as it comes into view: it appears as a coarse
+  // mosaic of its own colours and sharpens step by step into the full image.
+  // Photos are released one after another in a wave across the grid.
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('develop')) return;
+    try {
+      var BLOCKS = [56, 28, 14, 7, 3], STEP_MS = 85, GAP_MS = 55;
+      var queue = [], busy = false;
+
+      function show(img) { img.classList.add('shown'); }
+
+      function materialize(img) {
+        var w = img.clientWidth, h = img.clientHeight;
+        if (!w || !h) return show(img);
+        var cv = document.createElement('canvas'), c = cv.getContext('2d'), i = 0;
+        img.parentNode.appendChild(cv);
+        (function step() {
+          var b = BLOCKS[i];
+          cv.width = Math.max(1, Math.round(w / b));
+          cv.height = Math.max(1, Math.round(h / b));
+          c.drawImage(img, 0, 0, cv.width, cv.height);
+          if (++i < BLOCKS.length) return setTimeout(step, STEP_MS);
+          show(img);
+          cv.style.transition = 'opacity .35s ease';
+          requestAnimationFrame(function () { cv.style.opacity = 0; });
+          setTimeout(function () { cv.remove(); }, 400);
+        })();
+      }
+
+      function pump() {
+        if (busy || !queue.length) return;
+        busy = true;
+        materialize(queue.shift());
+        setTimeout(function () { busy = false; pump(); }, GAP_MS);
+      }
+
+      function ready(img) {
+        if (img.complete && img.naturalWidth) { queue.push(img); return pump(); }
+        img.addEventListener('load', function () { queue.push(img); pump(); }, { once: true });
+        img.addEventListener('error', function () { show(img); }, { once: true });
+      }
+
+      var io = new IntersectionObserver(function (entries) {
+        // Diagonal wave: top-left first
+        entries.filter(function (e) { return e.isIntersecting; })
+          .sort(function (a, b) {
+            return (a.boundingClientRect.top + a.boundingClientRect.left) - (b.boundingClientRect.top + b.boundingClientRect.left);
+          })
+          .forEach(function (e) { io.unobserve(e.target); ready(e.target); });
+      }, { rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.grid img').forEach(function (img) { io.observe(img); });
+    } catch (e) {
+      root.classList.remove('develop');
+    }
+  })();
+  </script>
 </body>
 </html>

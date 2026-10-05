@@ -1,11 +1,15 @@
 /*BASE*/
-@font-face{font-family:"Bricolage Grotesque";src:url(/fonts/bricolage-grotesque.woff2) format("woff2");font-weight:500 800;font-style:normal;font-display:swap}
-@font-face{font-family:"Schibsted Grotesk";src:url(/fonts/schibsted-grotesk.woff2) format("woff2");font-weight:400 700;font-style:normal;font-display:swap}
-@font-face{font-family:"Schibsted Grotesk";src:url(/fonts/schibsted-grotesk-italic.woff2) format("woff2");font-weight:450;font-style:italic;font-display:swap}
-:root{--bg:#f6f2e6;--fg:#1c1b17;--dim:#6a6860;--line:#e2ddcf;--display:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;--text:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+@font-face{font-family:"Aktiv Grotesk";src:url(/fonts/aktiv-grotesk-light.woff2) format("woff2");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Aktiv Grotesk";src:url(/fonts/aktiv-grotesk-regular.woff2) format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Aktiv Grotesk";src:url(/fonts/aktiv-grotesk-medium.woff2) format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Aktiv Grotesk";src:url(/fonts/aktiv-grotesk-semibold.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
+:root{--bg:#f6f2e6;--fg:#1c1b17;--dim:#6a6860;--line:#e2ddcf;--display:"Aktiv Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--text:"Aktiv Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+:root{color-scheme:light}
+:root[data-theme="dark"]{--bg:#151412;--fg:#ebe6da;--dim:#9c978b;--line:#2e2c27;color-scheme:dark}
 *{box-sizing:border-box}
+html,body{transition:background-color .3s ease,color .3s ease}
 html{background:var(--bg);-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--text);font-weight:450;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--text);font-weight:400;-webkit-font-smoothing:antialiased}
 main{max-width:600px;margin:0 auto;padding:64px 24px 120px}
 main.wide{max-width:680px}
 a{color:inherit}
@@ -24,7 +28,7 @@ em{font-style:italic}
 /* ── Essays ───────────────────────────────────────────── */
 .article-meta { margin-bottom: 40px; }
 .article-pub, .kicker { margin: 0 0 12px; color: var(--dim); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
-.article-title { margin: 0 0 10px; font-size: 36px; font-weight: 700; line-height: 1.1; letter-spacing: -.03em; }
+.article-title { margin: 0 0 10px; font-size: 36px; font-weight: 600; line-height: 1.1; letter-spacing: -.03em; }
 .subtitle { margin: 0 0 14px; color: var(--dim); font-size: 17px; line-height: 1.4; }
 .article-byline { margin: 0; color: var(--dim); font-size: 14px; }
 .article-body p, .prose p, .essay-text p { margin: 0 0 1.15em; font-size: 17px; line-height: 1.65; }
@@ -35,11 +39,11 @@ figure img { display: block; width: 100%; height: auto; }
 
 /* ── Research article ─────────────────────────────────── */
 .stat-strip-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 0 0 40px; padding: 20px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.stat-num { font: 700 28px/1 var(--display); letter-spacing: -.03em; }
+.stat-num { font: 600 28px/1 var(--display); letter-spacing: -.03em; }
 .stat-label { margin-top: 6px; color: var(--dim); font-size: 12px; line-height: 1.35; }
 .prose-section { margin: 48px 0 20px; }
 .prose-section-label { margin: 0 0 6px; color: var(--dim); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
-.prose-section-heading { margin: 0; font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -.025em; }
+.prose-section-heading { margin: 0; font-size: 26px; font-weight: 600; line-height: 1.15; letter-spacing: -.025em; }
 .prose-section-heading em { font-style: normal; }
 .pull-quote { margin: 32px 0; padding-left: 18px; border-left: 2px solid var(--fg); }
 .pull-quote p { margin: 0; font: 500 20px/1.4 var(--display); letter-spacing: -.01em; }
@@ -67,7 +71,7 @@ figcaption { margin-top: 8px; color: var(--dim); font-size: 12px; }
 /* ── Photos page ──────────────────────────────────────── */
 .page-photos main { max-width: 1100px; padding-top: 48px; padding-bottom: 96px; }
 .page-photos .top { margin-bottom: 40px; }
-.page-photos .top strong { color: var(--fg); font: 700 15px var(--display); }
+.page-photos .top strong { color: var(--fg); font: 600 15px var(--display); }
 .set { margin-bottom: 48px; }
 .set h2 { margin: 0 0 12px; font: 400 11px/1.4 var(--text); letter-spacing: .08em; text-transform: uppercase; }
 .set h2 a { color: var(--fg); text-decoration: none; }
@@ -76,6 +80,15 @@ figcaption { margin-top: 8px; color: var(--dim); font-size: 12px; }
 .grid { columns: 3 240px; column-gap: 6px; }
 .grid a { display: block; margin-bottom: 6px; break-inside: avoid; }
 .grid img { display: block; width: 100%; height: auto; background: var(--line); }
+/* Photos materialize as they load: a mosaic that resolves into the photo
+   (driven by the script at the end of photos.html; .develop is only set
+   when motion is allowed) */
+.grid a { position: relative; }
+.develop .grid a { background: var(--line); }
+.develop .grid img { opacity: 0; }
+.develop .grid img.shown { opacity: 1; transition: opacity .35s ease; }
+.grid canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; pointer-events: none; animation: tile-in .18s ease-out; }
+@keyframes tile-in { from { opacity: 0; } }
 
 @media (max-width: 560px) {
   .stat-strip-inner { grid-template-columns: 1fr 1fr; }
