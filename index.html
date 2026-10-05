@@ -34,7 +34,7 @@
 @font-face{font-family:"Aktiv Grotesk";src:url(/fonts/aktiv-grotesk-semibold.woff2) format("woff2");font-weight:600;font-style:normal;font-display:swap}
 :root{--bg:#f6f2e6;--fg:#1c1b17;--dim:#6a6860;--line:#e2ddcf;--display:"Aktiv Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--text:"Aktiv Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 :root{color-scheme:light}
-:root[data-theme="dark"]{--bg:#151412;--fg:#ebe6da;--dim:#9c978b;--line:#2e2c27;color-scheme:dark}
+:root[data-theme="dark"]{--bg:#151412;--fg:#fff;--dim:#9c978b;--line:#2e2c27;color-scheme:dark}
 *{box-sizing:border-box}
 html,body{transition:background-color .3s ease,color .3s ease}
 html{background:var(--bg);-webkit-text-size-adjust:100%}
@@ -74,14 +74,14 @@ ul.list{margin:0;padding:0;list-style:none}
 .theme{margin:0;border:0;background:none;cursor:pointer}
 .photos:hover,.theme:hover{color:var(--fg)}
 .theme:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
-@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
+.dust-word{display:inline-block;white-space:nowrap}.dust{display:inline-block}
 .photos svg,.theme svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .theme .sun,[data-theme="dark"] .theme .moon{display:none}
 [data-theme="dark"] .theme .sun{display:block}
 /* Paper: edges a shade warmer, like an old scroll, with a fine grain */
 html{background:radial-gradient(ellipse at center,rgba(140,110,60,0) 55%,rgba(140,110,60,.08) 100%) fixed,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .47 0 0 0 0 .39 0 0 0 0 .27 .3 0 0 0 -.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),var(--bg)}
 body{background:transparent}
-:root[data-theme="dark"]{background:radial-gradient(ellipse at center,rgba(0,0,0,0) 55%,rgba(0,0,0,.22) 100%) fixed,var(--bg)}
+:root[data-theme="dark"]{background:var(--bg)}
   </style>
   <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.webp"}}]},"eagerness":"moderate"}]}</script>
   <script type="application/ld+json">
@@ -176,6 +176,76 @@ body{background:transparent}
     }
     apply(root.dataset.theme === 'dark' ? 'dark' : 'light');
     btn.addEventListener('click', function () { apply(root.dataset.theme === 'dark' ? 'light' : 'dark', true); });
+  })();
+
+  // Clicking Photos: the page's text blows away letter by letter, left to
+  // right like wind, in choppy low-frame-rate steps; then the photos page opens.
+  (function () {
+    var link = document.querySelector('.photos');
+    if (!link || !link.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var played = [], hidden = [];
+
+    // Wrap every letter in a span so it can move on its own. Words stay
+    // unbreakable so nothing reflows when they're split up.
+    function dustify(root) {
+      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), nodes = [], chars = [];
+      while (walker.nextNode()) if (/\S/.test(walker.currentNode.nodeValue)) nodes.push(walker.currentNode);
+      nodes.forEach(function (n) {
+        var frag = document.createDocumentFragment();
+        n.nodeValue.split(/(\s+)/).forEach(function (part) {
+          if (!part) return;
+          if (/^\s+$/.test(part)) return frag.appendChild(document.createTextNode(part));
+          var word = document.createElement('span');
+          word.className = 'dust-word';
+          for (var ch of part) {
+            var c = document.createElement('span');
+            c.className = 'dust';
+            c.textContent = ch;
+            word.appendChild(c);
+            chars.push(c);
+          }
+          frag.appendChild(word);
+        });
+        n.parentNode.replaceChild(frag, n);
+      });
+      return chars;
+    }
+
+    function blowAway(el, r, W, steps) {
+      var delay = (r.left / W) * 420 + Math.random() * 260, dur = 520 + Math.random() * 380;
+      played.push(el.animate([
+        { opacity: 1, transform: 'none' },
+        { opacity: 0, transform: 'translate(' + (25 + Math.random() * 70) + 'px,' + (-10 - Math.random() * 45) + 'px) rotate(' + (Math.random() * 90 - 45) + 'deg)' }
+      ], { duration: dur, delay: delay, easing: 'steps(' + steps + ', end)', fill: 'forwards' }));
+      return delay + dur;
+    }
+
+    link.addEventListener('click', function (e) {
+      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      var href = link.href, W = innerWidth, H = innerHeight, end = 0;
+      dustify(document.querySelector('main')).forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > H) { c.style.visibility = 'hidden'; hidden.push(c); return; }
+        end = Math.max(end, blowAway(c, r, W, 5));
+      });
+      document.querySelectorAll('.icons a, .corner > *').forEach(function (el) {
+        end = Math.max(end, blowAway(el, el.getBoundingClientRect(), W, 3));
+      });
+      var q = document.querySelector('.quote');
+      if (q) played.push(q.animate([{ borderLeftColor: 'transparent' }], { duration: 500, delay: 150, easing: 'steps(4, end)', fill: 'forwards' }));
+      setTimeout(function () { location.href = href; }, end + 120);
+    });
+
+    // Coming back with the browser's Back button restores this page as it
+    // was left, so put the text back together.
+    addEventListener('pageshow', function (e) {
+      if (!e.persisted) return;
+      played.forEach(function (a) { a.cancel(); });
+      hidden.forEach(function (c) { c.style.visibility = ''; });
+      played = [];
+      hidden = [];
+    });
   })();
   </script>
 </body>
