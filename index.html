@@ -179,16 +179,19 @@ body{background:transparent}
   })();
 
   // Clicking Photos: the page's text blows away letter by letter, left to
-  // right like wind, in choppy low-frame-rate steps; then the photos page opens.
+  // right like wind, at a low frame rate; then the photos page opens. Coming
+  // back from Photos (its back arrow or the browser's Back button) plays it
+  // in reverse, the letters drifting back in and settling into place.
   (function () {
-    var link = document.querySelector('.photos');
-    if (!link || !link.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var played = [], hidden = [];
+    var link = document.querySelector('.photos'), main = document.querySelector('main');
+    if (!link || !main || !link.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var FLAG = 'home-dissolved', STEPS = 'steps(14, end)';
+    var played = [];
 
     // Wrap every letter in a span so it can move on its own. Words stay
     // unbreakable so nothing reflows when they're split up.
-    function dustify(root) {
-      var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT), nodes = [], chars = [];
+    function dustify() {
+      var walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT), nodes = [];
       while (walker.nextNode()) if (/\S/.test(walker.currentNode.nodeValue)) nodes.push(walker.currentNode);
       nodes.forEach(function (n) {
         var frag = document.createDocumentFragment();
@@ -202,49 +205,90 @@ body{background:transparent}
             c.className = 'dust';
             c.textContent = ch;
             word.appendChild(c);
-            chars.push(c);
           }
           frag.appendChild(word);
         });
         n.parentNode.replaceChild(frag, n);
       });
-      return chars;
     }
 
-    function blowAway(el, r, W, steps) {
-      var delay = (r.left / W) * 420 + Math.random() * 260, dur = 520 + Math.random() * 380;
-      played.push(el.animate([
-        { opacity: 1, transform: 'none' },
-        { opacity: 0, transform: 'translate(' + (25 + Math.random() * 70) + 'px,' + (-10 - Math.random() * 45) + 'px) rotate(' + (Math.random() * 90 - 45) + 'deg)' }
-      ], { duration: dur, delay: delay, easing: 'steps(' + steps + ', end)', fill: 'forwards' }));
-      return delay + dur;
+    // Put the plain text back (so link underlines return)
+    function undust() {
+      main.querySelectorAll('.dust-word').forEach(function (w) {
+        var parent = w.parentNode;
+        parent.replaceChild(document.createTextNode(w.textContent), w);
+        parent.normalize();
+      });
+    }
+
+    function clear() {
+      played.forEach(function (a) { a.cancel(); });
+      played = [];
+    }
+
+    // Everything that blows away: each letter on screen, the icons, the
+    // corner buttons. Returns [element, rect] pairs.
+    function pieces() {
+      var H = innerHeight, out = [];
+      main.querySelectorAll('.dust').forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < H) out.push([c, r]);
+      });
+      document.querySelectorAll('.icons a, .corner > *').forEach(function (el) {
+        out.push([el, el.getBoundingClientRect()]);
+      });
+      return out;
+    }
+
+    function scattered() {
+      return 'translate(' + (25 + Math.random() * 70) + 'px,' + (-10 - Math.random() * 45) + 'px) rotate(' + (Math.random() * 90 - 45) + 'deg)';
+    }
+
+    // dir 'out': blow away, left edge first. dir 'in': drift back, the
+    // right edge (the last to leave) first. Returns when it ends (ms).
+    function play(dir) {
+      var W = innerWidth, end = 0, here = { opacity: 1, transform: 'none' };
+      pieces().forEach(function (pr) {
+        var x = pr[1].left / W, dur = 520 + Math.random() * 380;
+        var delay = (dir === 'out' ? x : 1 - x) * 420 + Math.random() * 260;
+        var gone = { opacity: 0, transform: scattered() };
+        played.push(pr[0].animate(dir === 'out' ? [here, gone] : [gone, here],
+          { duration: dur, delay: delay, easing: STEPS, fill: dir === 'out' ? 'forwards' : 'backwards' }));
+        end = Math.max(end, delay + dur);
+      });
+      var q = document.querySelector('.quote');
+      if (q) played.push(q.animate([{ borderLeftColor: 'transparent', offset: dir === 'out' ? 1 : 0 }],
+        { duration: 500, delay: dir === 'out' ? 150 : 300, easing: STEPS, fill: dir === 'out' ? 'forwards' : 'backwards' }));
+      return end;
+    }
+
+    function assemble() {
+      clear();
+      if (!main.querySelector('.dust')) dustify();
+      var end = play('in');
+      setTimeout(function () { clear(); undust(); }, end + 50);
     }
 
     link.addEventListener('click', function (e) {
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
-      var href = link.href, W = innerWidth, H = innerHeight, end = 0;
-      dustify(document.querySelector('main')).forEach(function (c) {
-        var r = c.getBoundingClientRect();
-        if (r.bottom < 0 || r.top > H) { c.style.visibility = 'hidden'; hidden.push(c); return; }
-        end = Math.max(end, blowAway(c, r, W, 5));
-      });
-      document.querySelectorAll('.icons a, .corner > *').forEach(function (el) {
-        end = Math.max(end, blowAway(el, el.getBoundingClientRect(), W, 3));
-      });
-      var q = document.querySelector('.quote');
-      if (q) played.push(q.animate([{ borderLeftColor: 'transparent' }], { duration: 500, delay: 150, easing: 'steps(4, end)', fill: 'forwards' }));
+      clear();
+      dustify();
+      var href = link.href, end = play('out');
+      try { sessionStorage.setItem(FLAG, '1'); } catch (err) {}
       setTimeout(function () { location.href = href; }, end + 120);
     });
 
-    // Coming back with the browser's Back button restores this page as it
-    // was left, so put the text back together.
+    // Arriving back on a fresh load after the text blew away
+    var flagged = false;
+    try { flagged = sessionStorage.getItem(FLAG) === '1'; sessionStorage.removeItem(FLAG); } catch (err) {}
+    if (flagged) assemble();
+
+    // Arriving back with the page restored exactly as it was left (blown away)
     addEventListener('pageshow', function (e) {
-      if (!e.persisted) return;
-      played.forEach(function (a) { a.cancel(); });
-      hidden.forEach(function (c) { c.style.visibility = ''; });
-      played = [];
-      hidden = [];
+      if (!e.persisted || !played.length) return;
+      try { sessionStorage.removeItem(FLAG); } catch (err) {}
+      assemble();
     });
   })();
   </script>

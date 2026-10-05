@@ -26,7 +26,7 @@
   <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("develop")</script>
   <link rel="preload" href="/fonts/aktiv-grotesk-regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/aktiv-grotesk-semibold.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/site.css?v=20261005c" />
+  <link rel="stylesheet" href="/site.css?v=20261005d" />
   <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.webp"}}]},"eagerness":"moderate"}]}</script>
 </head>
 <body class="page-photos">
@@ -195,6 +195,35 @@
           .forEach(function (e) { io.unobserve(e.target); ready(e.target); });
       }, { rootMargin: '0px 0px -30px 0px' });
       document.querySelectorAll('.grid img').forEach(function (img) { io.observe(img); });
+
+      // The back arrow plays it all in reverse: photos on screen flicker out
+      // from the bottom-right, the headings fade, then the homepage's text
+      // drifts back together.
+      var back = document.querySelector('.top a[href="/"]'), leaving = [];
+      if (back && back.animate) back.addEventListener('click', function (e) {
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        var H = innerHeight, pos = function (img) { var r = img.getBoundingClientRect(); return r.top + r.left; };
+        var onScreen = [].filter.call(document.querySelectorAll('.grid img.shown'), function (img) {
+          var r = img.getBoundingClientRect();
+          return r.bottom > 0 && r.top < H;
+        }).sort(function (a, b) { return pos(b) - pos(a); });
+        onScreen.forEach(function (img, i) {
+          leaving.push(img);
+          setTimeout(function () { img.classList.remove('shown'); }, i * 35);
+        });
+        document.querySelectorAll('.top, .set h2').forEach(function (el) {
+          leaving.push(el.animate([{ opacity: 0, transform: 'translateY(6px)' }], { duration: 450, delay: 150, easing: 'steps(8, end)', fill: 'forwards' }));
+        });
+        setTimeout(function () { location.href = back.href; }, onScreen.length * 35 + 650);
+      });
+
+      // If this page is restored (e.g. with Forward) after leaving, undo it
+      addEventListener('pageshow', function (e) {
+        if (!e.persisted || !leaving.length) return;
+        leaving.forEach(function (x) { if (x.cancel) x.cancel(); else x.classList.add('shown'); });
+        leaving = [];
+      });
     } catch (e) {
       root.classList.remove('develop');
     }
