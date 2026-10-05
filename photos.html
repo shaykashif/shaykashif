@@ -26,7 +26,30 @@
   <script>if(!matchMedia("(prefers-reduced-motion: reduce)").matches)document.documentElement.classList.add("develop")</script>
   <link rel="preload" href="/fonts/aktiv-grotesk-regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/aktiv-grotesk-semibold.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/site.css?v=20261004a" />
+  <link rel="stylesheet" href="/site.css?v=20261005a" />
+  <style>
+  /* Arriving from the homepage's Photos button, this page opens out of an
+     arch that grows from the button (a cross-document view transition). */
+  @media (prefers-reduced-motion: no-preference) {
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: 1.3s cubic-bezier(.4, 0, .3, 1) both portal-out; }
+    ::view-transition-new(root) {
+      animation: 1.3s linear both portal-in;
+      -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 21.5V11C4.5 7 8.6 5.1 12 2.5C15.4 5.1 19.5 7 19.5 11V21.5Z'/%3E%3C/svg%3E") no-repeat;
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 21.5V11C4.5 7 8.6 5.1 12 2.5C15.4 5.1 19.5 7 19.5 11V21.5Z'/%3E%3C/svg%3E") no-repeat;
+    }
+  }
+  /* The arch starts over the button (34px in from the top-right corner),
+     drifts to the middle while it grows, holds for a beat as a whole arch
+     framing the page, then sweeps out past the edges of the screen. */
+  @keyframes portal-in {
+    0% { -webkit-mask-size: 24px; mask-size: 24px; -webkit-mask-position: right 22px top 22px; mask-position: right 22px top 22px; animation-timing-function: cubic-bezier(.2, .7, .3, 1); }
+    45% { -webkit-mask-size: 70vmin; mask-size: 70vmin; -webkit-mask-position: 50% 50%; mask-position: 50% 50%; animation-timing-function: linear; }
+    60% { -webkit-mask-size: 78vmin; mask-size: 78vmin; -webkit-mask-position: 50% 50%; mask-position: 50% 50%; animation-timing-function: cubic-bezier(.6, 0, .9, .5); }
+    100% { -webkit-mask-size: 400vmax; mask-size: 400vmax; -webkit-mask-position: 50% 50%; mask-position: 50% 50%; }
+  }
+  @keyframes portal-out { to { opacity: .3; filter: blur(4px); } }
+  </style>
   <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.webp"}}]},"eagerness":"moderate"}]}</script>
 </head>
 <body class="page-photos">
@@ -163,40 +186,20 @@
     </section>
   </main>
   <script>
-  // Each photo materializes as it comes into view: it appears as a coarse
-  // mosaic of its own colours and sharpens step by step into the full image.
-  // Photos are released one after another in a wave across the grid.
+  // Photos materialize as the page loads, in a wave from the top-left; ones
+  // further down do the same as they scroll into view.
   (function () {
     var root = document.documentElement;
     if (!root.classList.contains('develop')) return;
     try {
-      var BLOCKS = [56, 28, 14, 7, 3], STEP_MS = 85, GAP_MS = 55;
-      var queue = [], busy = false;
+      var GAP_MS = 45, queue = [], busy = false;
 
       function show(img) { img.classList.add('shown'); }
-
-      function materialize(img) {
-        var w = img.clientWidth, h = img.clientHeight;
-        if (!w || !h) return show(img);
-        var cv = document.createElement('canvas'), c = cv.getContext('2d'), i = 0;
-        img.parentNode.appendChild(cv);
-        (function step() {
-          var b = BLOCKS[i];
-          cv.width = Math.max(1, Math.round(w / b));
-          cv.height = Math.max(1, Math.round(h / b));
-          c.drawImage(img, 0, 0, cv.width, cv.height);
-          if (++i < BLOCKS.length) return setTimeout(step, STEP_MS);
-          show(img);
-          cv.style.transition = 'opacity .35s ease';
-          requestAnimationFrame(function () { cv.style.opacity = 0; });
-          setTimeout(function () { cv.remove(); }, 400);
-        })();
-      }
 
       function pump() {
         if (busy || !queue.length) return;
         busy = true;
-        materialize(queue.shift());
+        show(queue.shift());
         setTimeout(function () { busy = false; pump(); }, GAP_MS);
       }
 

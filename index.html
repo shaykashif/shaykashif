@@ -74,6 +74,7 @@ ul.list{margin:0;padding:0;list-style:none}
 .theme{margin:0;border:0;background:none;cursor:pointer}
 .photos:hover,.theme:hover{color:var(--fg)}
 .theme:focus-visible{outline:2px solid var(--fg);outline-offset:-2px}
+@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}
 .photos svg,.theme svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .theme .sun,[data-theme="dark"] .theme .moon{display:none}
 [data-theme="dark"] .theme .sun{display:block}

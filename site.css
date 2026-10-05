@@ -80,15 +80,15 @@ figcaption { margin-top: 8px; color: var(--dim); font-size: 12px; }
 .grid { columns: 3 240px; column-gap: 6px; }
 .grid a { display: block; margin-bottom: 6px; break-inside: avoid; }
 .grid img { display: block; width: 100%; height: auto; background: var(--line); }
-/* Photos materialize as they load: a mosaic that resolves into the photo
-   (driven by the script at the end of photos.html; .develop is only set
-   when motion is allowed) */
-.grid a { position: relative; }
-.develop .grid a { background: var(--line); }
-.develop .grid img { opacity: 0; }
-.develop .grid img.shown { opacity: 1; transition: opacity .35s ease; }
-.grid canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; pointer-events: none; animation: tile-in .18s ease-out; }
-@keyframes tile-in { from { opacity: 0; } }
+/* Photos materialize as the page loads: each settles from soft, faded and
+   slightly enlarged into focus, in a wave across the grid (driven by the
+   script at the end of photos.html; .develop is only set when motion is
+   allowed) */
+.develop .grid a { overflow: hidden; background: var(--line); }
+.develop .grid img { opacity: 0; transform: scale(1.08); filter: blur(16px) saturate(.3) brightness(1.2); }
+.develop .grid img.shown { opacity: 1; transform: none; filter: none; transition: opacity .8s ease, transform 1.2s cubic-bezier(.2, .7, .2, 1), filter 1s ease; }
+.develop .set h2 { animation: set-in .7s ease both; }
+@keyframes set-in { from { opacity: 0; transform: translateY(6px); } }
 
 @media (max-width: 560px) {
   .stat-strip-inner { grid-template-columns: 1fr 1fr; }
