@@ -28,42 +28,25 @@
   <link rel="preload" href="/fonts/aktiv-grotesk-semibold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/site.css?v=20261007a" />
   <style>
-    /* Each album is a pointed ogee window. The clip shape is a unit-box path,
-       so it scales with the window. The outer layer is the frame colour and
-       the inner layer, 2px smaller, shows the photo inside it. */
     .windows {
-      list-style: none; display: grid; gap: 52px 32px;
+      list-style: none; display: grid; gap: 12px;
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
       margin-top: 8px;
     }
     .window { display: block; color: var(--fg); text-decoration: none; }
     .arch {
       position: relative; aspect-ratio: 4 / 5;
-      clip-path: url(#ogee); background: var(--fg); overflow: hidden;
-    }
-    .arch-inner {
-      position: absolute; inset: 2px;
-      clip-path: url(#ogee); background: var(--line); overflow: hidden;
+      background: var(--line); overflow: hidden;
     }
     .arch img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s ease; }
     .window:hover .arch img { transform: scale(1.04); }
-    .win-name { display: block; margin-top: 14px; font: 400 11px/1.4 var(--text); }
-    .win-name span { margin-left: 6px; color: var(--dim); }
-    .window:hover .win-name { text-decoration: underline; text-underline-offset: 3px; }
     .develop .arch img { opacity: 0; transform: translateY(8px); filter: grayscale(1) contrast(1.8) brightness(1.35); transition: opacity .55s steps(10, end), transform .55s steps(8, end), filter .9s steps(12, end); }
     .develop .arch img.shown { opacity: 1; transform: none; filter: none; }
     .develop .window:hover .arch img.shown { transform: scale(1.04); }
-    @media (max-width: 520px) { .windows { grid-template-columns: repeat(2, 1fr); gap: 40px 18px; } }
+    @media (max-width: 520px) { .windows { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
   </style>
 </head>
 <body class="page-photos">
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <defs>
-      <clipPath id="ogee" clipPathUnits="objectBoundingBox">
-        <path d="M0,1 V0.5 C0,0.3 0.22,0.25 0.3,0.12 Q0.4,0.02 0.5,0 Q0.6,0.02 0.7,0.12 C0.78,0.25 1,0.3 1,0.5 V1 Z" />
-      </clipPath>
-    </defs>
-  </svg>
 
   <main>
     <header class="top">
@@ -74,38 +57,32 @@
     <ul class="windows">
       <li>
         <a class="window" href="/gallery-kreuzberg">
-          <div class="arch"><div class="arch-inner"><img src="https://photos.shaykas.com/Kreuzberg/thumb/IMG_1104.webp" width="720" height="900" alt="Cover photo for Golden Hour: Kreuzberg" fetchpriority="high" decoding="async" /></div></div>
-          <span class="win-name">Golden Hour: Kreuzberg <span>12</span></span>
+          <div class="arch"><img src="https://photos.shaykas.com/Kreuzberg/thumb/IMG_1104.webp" width="720" height="900" alt="Cover photo for Golden Hour: Kreuzberg" fetchpriority="high" decoding="async" /></div>
         </a>
       </li>
       <li>
         <a class="window" href="/gallery-hyde-park">
-          <div class="arch"><div class="arch-inner"><img src="https://photos.shaykas.com/HydePark/thumb/00270005.webp" width="720" height="900" alt="Cover photo for Hyde Park, London" fetchpriority="high" decoding="async" /></div></div>
-          <span class="win-name">Hyde Park, London <span>26</span></span>
+          <div class="arch"><img src="https://photos.shaykas.com/HydePark/thumb/00270005.webp" width="720" height="900" alt="Cover photo for Hyde Park, London" fetchpriority="high" decoding="async" /></div>
         </a>
       </li>
       <li>
         <a class="window" href="/gallery-winter-pea">
-          <div class="arch"><div class="arch-inner"><img src="https://photos.shaykas.com/WinterPEA/thumb/R1-03816-027A.webp" width="720" height="900" alt="Cover photo for Winter at Exeter" loading="lazy" decoding="async" /></div></div>
-          <span class="win-name">Winter at Exeter <span>6</span></span>
+          <div class="arch"><img src="https://photos.shaykas.com/WinterPEA/thumb/R1-03816-027A.webp" width="720" height="900" alt="Cover photo for Winter at Exeter" loading="lazy" decoding="async" /></div>
         </a>
       </li>
       <li>
         <a class="window" href="/gallery-pea-fall">
-          <div class="arch"><div class="arch-inner"><img src="https://photos.shaykas.com/PEA%20Fall/thumb/R1-00671-030A.webp" width="720" height="900" alt="Cover photo for PEA Fall" loading="lazy" decoding="async" /></div></div>
-          <span class="win-name">PEA Fall <span>22</span></span>
+          <div class="arch"><img src="https://photos.shaykas.com/PEA%20Fall/thumb/R1-00671-030A.webp" width="720" height="900" alt="Cover photo for PEA Fall" loading="lazy" decoding="async" /></div>
         </a>
       </li>
       <li>
         <a class="window" href="/gallery-sf-marin">
-          <div class="arch"><div class="arch-inner"><img src="https://photos.shaykas.com/SF%20Marin/thumb/R1-03816-003A.webp" width="720" height="900" alt="Cover photo for SF &amp; Marin" loading="lazy" decoding="async" /></div></div>
-          <span class="win-name">SF &amp; Marin <span>10</span></span>
+          <div class="arch"><img src="https://photos.shaykas.com/SF%20Marin/thumb/R1-03816-003A.webp" width="720" height="900" alt="Cover photo for SF &amp; Marin" loading="lazy" decoding="async" /></div>
         </a>
       </li>
       <li>
         <a class="window" href="/gallery-yosemite">
-          <div class="arch"><div class="arch-inner"><img src="https://photos.shaykas.com/Yosemite%20and%20Summer/thumb/R1-00671-003A.webp" width="720" height="900" alt="Cover photo for Yosemite &amp; Summer" loading="lazy" decoding="async" /></div></div>
-          <span class="win-name">Yosemite &amp; Summer <span>14</span></span>
+          <div class="arch"><img src="https://photos.shaykas.com/Yosemite%20and%20Summer/thumb/R1-00671-003A.webp" width="720" height="900" alt="Cover photo for Yosemite &amp; Summer" loading="lazy" decoding="async" /></div>
         </a>
       </li>
     </ul>
@@ -167,7 +144,7 @@
           leaving.push(img);
           setTimeout(function () { img.classList.remove('shown'); }, i * 35);
         });
-        document.querySelectorAll('.top, .win-name').forEach(function (el) {
+        document.querySelectorAll('.top').forEach(function (el) {
           leaving.push(el.animate([{ opacity: 0, transform: 'translateY(6px)' }], { duration: 450, delay: 150, easing: 'steps(8, end)', fill: 'forwards' }));
         });
         setTimeout(function () { location.href = back.href; }, onScreen.length * 35 + 650);
