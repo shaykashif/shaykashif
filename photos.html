@@ -144,6 +144,13 @@
       }, { rootMargin: '0px 0px -30px 0px' });
       document.querySelectorAll('.arch img').forEach(function (img) { io.observe(img); });
 
+      // Safety net: if the observer hasn't revealed a cover after a moment
+      // (some browsers only report intersections after the first interaction),
+      // show it anyway so the windows never stay blank.
+      setTimeout(function () {
+        document.querySelectorAll('.arch img:not(.shown)').forEach(show);
+      }, 1200);
+
       // The back arrow plays it all in reverse: windows on screen flicker out
       // from the bottom-right, the header fades, then the homepage's text
       // drifts back together.
