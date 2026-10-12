@@ -72,8 +72,6 @@ html, body {
 }
 .h-eyebrow {
   font-size: 9px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   color: var(--cyan);
   margin-bottom: 5px;
   font-weight: 400;
@@ -135,8 +133,6 @@ html, body {
 .sb-section:last-child { flex: 1; }
 .sb-label {
   font-size: 9px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: var(--dim);
   margin-bottom: 10px;
   display: flex;
@@ -170,7 +166,7 @@ html, body {
   padding: 10px;
 }
 .stat-val { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; line-height:1; margin-bottom:2px; color: var(--white); }
-.stat-lbl { font-size:8px; color:var(--dim); text-transform:uppercase; letter-spacing:0.05em; line-height:1.3; }
+.stat-lbl { font-size:8px; color:var(--dim); line-height:1.3; }
 .stat-change { font-size:9px; margin-top:3px; font-weight:500; }
 .neg { color: #e07060; } .pos { color: #7ed4a0; }
 
@@ -207,8 +203,6 @@ html, body {
 }
 .area-panel-label {
   font-size: 8.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: rgba(232,213,168,0.45);
   margin-bottom: 9px;
   padding-bottom: 7px;
@@ -299,8 +293,6 @@ html.light .leaflet-control-zoom a { background: var(--panel) !important; color:
   padding: 6px 18px;
   font-family: 'Inter', sans-serif;
   font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   border: 1px solid rgba(232,213,168,0.2);
   background: transparent;
   color: rgba(240,237,232,0.45);
@@ -351,8 +343,6 @@ html.light .leaflet-control-zoom a { background: var(--panel) !important; color:
 }
 .s-eyebrow {
   font-size: 9px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: var(--cyan);
   margin-bottom: 10px;
 }
@@ -388,7 +378,7 @@ html.light .leaflet-control-zoom a { background: var(--panel) !important; color:
 }
 .hl-val.neg { color: #e07060; }
 .hl-val.pos { color: #7ed4a0; }
-.hl-lbl { font-size: 10px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.4; }
+.hl-lbl { font-size: 10px; color: var(--dim); line-height: 1.4; }
 .hl-note { font-size: 10px; color: var(--gold); margin-top: 4px; font-style: italic; }
 
 /* Population timeline bars */
@@ -403,7 +393,7 @@ html.light .leaflet-control-zoom a { background: var(--panel) !important; color:
 
 /* Comparison bars */
 .comp-group { margin-bottom: 20px; }
-.comp-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); margin-bottom: 8px; }
+.comp-label { font-size: 10px; color: var(--dim); margin-bottom: 8px; }
 .comp-row { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
 .comp-name { font-size: 11px; color: var(--white); width: 100px; flex-shrink: 0; }
 .comp-bar-wrap { flex: 1; height: 18px; background: rgba(255,255,255,0.04); border-radius: 1px; }
@@ -413,7 +403,7 @@ html.light .leaflet-control-zoom a { background: var(--panel) !important; color:
 /* Neighborhood table */
 .nbhd-table { width: 100%; border-collapse: collapse; }
 .nbhd-table th {
-  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  font-size: 9px;
   color: var(--dim); padding: 0 12px 10px 0; text-align: left; border-bottom: 1px solid var(--border);
 }
 .nbhd-table td { font-size: 11px; color: var(--white); padding: 8px 12px 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
@@ -431,7 +421,7 @@ html.light .leaflet-control-zoom a { background: var(--panel) !important; color:
   padding-left: 20px;
   margin: 20px 0 0;
 }
-.s-quote cite { display: block; font-size: 10px; font-style: normal; color: var(--dim); margin-top: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
+.s-quote cite { display: block; font-size: 10px; font-style: normal; color: var(--dim); margin-top: 8px; }
 
 /* Factor list */
 .factor-list { list-style: none; padding: 0; margin: 0; }
@@ -498,8 +488,6 @@ html.light .nbhd-table td { color: var(--white); }
   color: rgba(240,237,232,0.55);
   font-family: 'Inter', sans-serif;
   font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
@@ -653,8 +641,6 @@ html.light .nbhd-table td { color: var(--white); }
   color: var(--dim);
   font-family: 'Inter', sans-serif;
   font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   text-decoration: none;
   border-radius: 4px;
   cursor: pointer;
@@ -912,7 +898,7 @@ html.light #back-btn {
     <!-- Sources footer -->
     <div class="s-section stats-full" style="border-color:var(--border); padding: 20px 32px;">
       <div style="font-size:10px; color:var(--dim); line-height:2.2; letter-spacing:0.04em;">
-        <strong class="sources-hdr" style="text-transform:uppercase; letter-spacing:0.12em; color:rgba(240,237,232,0.45); display:block; margin-bottom:8px;">Sources</strong>
+        <strong class="sources-hdr" style="color:rgba(240,237,232,0.45); display:block; margin-bottom:8px;">Sources</strong>
         <a href="https://dsl.richmond.edu/panorama/redlining/#loc=12/37.804/-122.246&city=oakland-ca" target="_blank">Mapping Inequality</a> — University of Richmond, Digital Scholarship Lab<br>
         <a href="https://dsl.richmond.edu/socialvulnerability/#loc=12/37.811/-122.228&city=oakland-ca" target="_blank">MTC/ABAG Social Vulnerability Index</a> — accessed via DSL Richmond<br>
         <a href="https://www.census.gov" target="_blank">U.S. Census Bureau</a> — American Community Survey (ACS)<br>

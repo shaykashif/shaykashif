@@ -61,11 +61,11 @@ body{animation:fade-in .7s ease-in-out both}
 .quote p{margin:0}
 .bio p{font-size:17px;line-height:1.65}
 .bio a{text-decoration:underline;text-decoration-color:var(--dim);text-underline-offset:3px}
-h2.label{margin:48px 0 6px;color:var(--dim);font:400 11px/1.4 var(--text);letter-spacing:.08em;text-transform:uppercase}
+h2.label{margin:48px 0 6px;color:var(--dim);font:400 11px/1.4 var(--text);letter-spacing:normal}
 ul.list{margin:0;padding:0;list-style:none}
 .list a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:7px 0;text-decoration:none}
 .list a:hover .t{text-decoration:underline;text-underline-offset:3px}
-.d{color:var(--dim);font-size:11px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
+.d{color:var(--dim);font-size:11px;white-space:nowrap}
 .t .d{margin-left:6px}
 .credit{margin-top:72px;color:var(--dim);font-size:12px}
 .credit p{margin:0 0 4px}
@@ -132,11 +132,11 @@ body::after{left:calc(50% + var(--half) + 40px)}
 
     <div class="bio">
       <p>I'm the founder of <strong><a href="https://plstag.me" target="_blank" rel="noopener">tagme</a></strong>, a platform redefining how we find valuable connection in the digital age. If you'd like to read more about our mission, you can do so <a href="https://plstag.me/mission" target="_blank" rel="noopener">here</a>, and if you want to be part of the team, reach me at shay [at] plstag [dot] me.</p>
-      <p>Before <strong><a href="https://plstag.me" target="_blank" rel="noopener">tagme</a></strong>, I've worn many hats over the years, working with LoRa, IoT, encryption, and also doing water research for <a href="https://www.ebmud.com" target="_blank" rel="noopener">EBMUD</a>.</p>
-      <p>Much of my work has also extended into the financial sector, including in philanthropic private equity at <a href="https://www.mertoncp.com" target="_blank" rel="noopener">Merton</a> and consulting and quantitative finance work across the sector.</p>
-      <p>Outside of all that, I also have an ardent passion for student journalism and defending free speech. I am a Director at the Purdue Student Publishing Foundation, the non-profit that oversees the award-winning <a href="https://www.purdueexponent.org" target="_blank" rel="noopener">Purdue Exponent</a>—Indiana's largest collegiate newspaper, and one of two in the country to operate its own printing press. In the past, I was on the editorial board of <a href="https://www.theexonian.com" target="_blank" rel="noopener">The Exonian</a>, the oldest high-school newspaper in America, and founded the <a href="https://sites.google.com/dlshs.org/thewintonoracle" target="_blank" rel="noopener">Winton Oracle</a>.</p>
-	  <p>I also do analog and digital photography, which you can find on this website. I develop my own film and do printmaking, so if you're interested in a print of one of my photos, please reach out!</p>
-      <p>This website is primarily just the radio station from which I broadcast my musings out into the cosmos, and it appears you have stumbled upon it. Feel free to say hi at shay [at] shaykas [dot] com.</p>
+      <p>Previously, much of my work has also extended into the financial sector, including in philanthropic private equity at <a href="https://www.mertoncp.com" target="_blank" rel="noopener">Merton</a> and consulting and quantitative finance at various firms. I have also done water research for <a href="https://www.ebmud.com" target="_blank" rel="noopener">EBMUD</a>.</p>
+      <p>Outside of all that, I'm also involved in journalism and defending free speech. I am a Director at the Purdue Student Publishing Foundation, the non-profit that oversees the award-winning <a href="https://www.purdueexponent.org" target="_blank" rel="noopener">Purdue Exponent</a>—Indiana's largest collegiate newspaper, and one of two in the country to operate its own printing press. In the past, I was on the editorial board of <a href="https://www.theexonian.com" target="_blank" rel="noopener">The Exonian</a>, the oldest high-school newspaper in America, and founded the <a href="https://sites.google.com/dlshs.org/thewintonoracle" target="_blank" rel="noopener">Winton Oracle</a>.</p>
+      <p>I also do analog and digital photography, which you can find <a href="/photos" class="photos-link">here</a>. I develop my own film and do printmaking, so if you're interested in a print of one of my photos, please reach out!</p>
+      <p>This website is primarily just the radio station from which I broadcast my musings out into the cosmos, and it appears you have stumbled upon it. I am a tinkerer by nature and you can find many projects I've done throughout the years here, from IoT and LoRa microcontroller projects to financial and linguistic modeling.</p>
+      <p>Feel free to say hi at shay [at] shaykas [dot] com.</p>
     </div>
     </section>
 
@@ -194,8 +194,8 @@ body::after{left:calc(50% + var(--half) + 40px)}
   // back from Photos (its back arrow or the browser's Back button) plays it
   // in reverse, the letters drifting back in and settling into place.
   (function () {
-    var link = document.querySelector('.photos'), main = document.querySelector('main');
-    if (!link || !main || !link.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var main = document.querySelector('main');
+    if (!main || !document.body.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     var FLAG = 'home-dissolved';
     var GUST = 'cubic-bezier(.55, .05, .75, .6)', SETTLE = 'cubic-bezier(.25, .4, .45, .95)';
     var played = [];
@@ -291,7 +291,10 @@ body::after{left:calc(50% + var(--half) + 40px)}
       setTimeout(function () { clear(); undust(); }, end + 50);
     }
 
-    link.addEventListener('click', function (e) {
+    // Both the Photos button and the "here" in the bio start the same walk-off
+    document.addEventListener('click', function (e) {
+      var link = e.target.closest && e.target.closest('.photos, .photos-link');
+      if (!link) return;
       if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
       clear();
