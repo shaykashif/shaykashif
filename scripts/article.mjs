@@ -5,7 +5,8 @@
 //   npm run article -- ../drafts/my-essay.md --no-register   (page only)
 //
 // Front matter: title, description, date, kind, image, image_alt, caption,
-// and optionally slug, byline, subtitle_style (italic).
+// and optionally slug, byline, subtitle_style (italic), subtitle_2 (a second,
+// upright subtitle line).
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -212,7 +213,8 @@ ${hero.banner}
       <p class="article-pub">${esc(fm.kind || "Essay")}</p>
       <h1 class="article-title">${title}</h1>
       <p class="subtitle${italic}">${desc}</p>
-      <p class="article-byline">${esc(fm.byline || "Shay Kashif")}</p>
+${fm.subtitle_2 ? `      <p class="subtitle">${esc(fm.subtitle_2)}</p>
+` : ""}      <p class="article-byline">${esc(fm.byline || "Shay Kashif")}</p>
     </div>
 
     <article class="article-body">
