@@ -6,7 +6,11 @@
 //
 // Front matter: title, description, date, kind, image, image_alt, caption,
 // and optionally slug, byline, subtitle_style (italic), subtitle_2 (a second,
-// upright subtitle line), og_image (a wide ~1200x630 crop for link previews).
+// upright subtitle line), og_image (a wide ~1200x630 crop for link previews),
+// hero_wide (wide crop swapped in for a tall hero on desktop; defaults to og_image),
+// voiceover (name of audio/<name>.mp3 and audio/<name>.json, word timings, to
+// add a "Listen to this article" player), podcast_url (episode link shown
+// under the byline).
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -148,7 +152,7 @@ function parseDraft(text) {
   return { fm, body: text.slice(m[0].length) };
 }
 
-function pageHtml({ fm, slug, body, hasFootnotes, hero, cssVersion }) {
+function pageHtml({ fm, slug, body, hasFootnotes, hero, cssVersion, voice, podcast }) {
   const title = esc(fm.title);
   const desc = esc(fm.description);
   const url = `${SITE}/article-${slug}`;
@@ -216,14 +220,19 @@ ${hero.banner}
       <p class="subtitle${italic}">${desc}</p>
 ${fm.subtitle_2 ? `      <p class="subtitle">${esc(fm.subtitle_2)}</p>
 ` : ""}      <p class="article-byline">${esc(fm.byline || "Shay Kashif")}</p>
-    </div>
+${podcast ? `      <div class="listen">
+        <a class="listen-spotify" href="${esc(podcast)}" target="_blank" rel="noopener" title="Good Morning Planet Earth with Shay Kashif">Listen on Spotify</a>
+      </div>
+` : ""}    </div>
 
     <article class="article-body">
 ${hero.portrait}${body}
     </article>
   </main>
   <script src="/chrome.js" defer></script>
-${hasFootnotes ? '  <script src="/footnotes.js" defer></script>\n' : ""}</body>
+${voice ? `  <script type="application/json" id="voiceover">${voice}</script>
+  <script src="/listen.js" defer></script>
+` : ""}${hasFootnotes ? '  <script src="/footnotes.js" defer></script>\n' : ""}</body>
 </html>
 `;
 }
@@ -237,15 +246,32 @@ function heroHtml(fm, warnings) {
   const caption = fm.caption ? esc(fm.caption) : "";
   const dims = d ? ` width="${d.width}" height="${d.height}"` : "";
 
-  // Tall photos get the narrow centered treatment used on In the Alpine; wide
-  // ones become the full-width banner.
+  // Tall photos get the narrow centered treatment used on In the Alpine, so
+  // they don't push the text off the screen on a phone. On desktop they swap
+  // to a wide crop (hero_wide, else og_image) when one is provided.
   if (d && d.height > d.width * 1.05) {
+    const wideSrc = fm.hero_wide || fm.og_image;
+    const wsrc = wideSrc ? "/" + String(wideSrc).replace(/^\//, "") : "";
+    const wd = wsrc ? imageDims(wsrc, warnings) : null;
+    const swap = wd && wd.width > wd.height;
+    const img = `<img src="${src}"${dims} alt="${alt}" fetchpriority="high" />`;
+    const media = swap
+      ? `<picture>
+        <source media="(min-width: 860px)" srcset="${wsrc}" width="${wd.width}" height="${wd.height}" />
+        ${img}
+      </picture>`
+      : img;
     return {
       banner: "",
       portrait:
-        `    <figure class="narrow">\n      <img src="${src}"${dims} alt="${alt}" fetchpriority="high" />\n` +
-        (caption ? `      <figcaption>${caption}</figcaption>\n` : "") +
-        `    </figure>\n\n`,
+        `    <figure class="narrow${swap ? " hero-swap" : ""}">
+      ${media}
+` +
+        (caption ? `      <figcaption>${caption}</figcaption>
+` : "") +
+        `    </figure>
+
+`,
     };
   }
   return {
@@ -321,7 +347,30 @@ export function build(draftPath, { register: doRegister = true } = {}) {
   const p = (n) => String(n).padStart(2, "0");
   const cssVersion = `${css.getFullYear()}${p(css.getMonth() + 1)}${p(css.getDate())}${p(css.getHours())}${p(css.getMinutes())}`;
 
-  const html = pageHtml({ fm, slug, body: bodyHtml, hasFootnotes, hero, cssVersion });
+  let voice = "";
+  if (fm.voiceover) {
+    const name = String(fm.voiceover);
+    const mp3 = path.join(ROOT, "audio", `${name}.mp3`);
+    const words = path.join(ROOT, "audio", `${name}.json`);
+    if (!fs.existsSync(mp3)) warnings.push(`voiceover audio not found: audio/${name}.mp3`);
+    else {
+      let duration = 0;
+      if (fs.existsSync(words)) {
+        const w = JSON.parse(fs.readFileSync(words, "utf8"));
+        duration = Math.round(((w[w.length - 1] || [0, 0, 0])[2] + 0.2) * 10) / 10;
+      } else warnings.push(`voiceover timings not found: audio/${name}.json (no word highlighting)`);
+      voice = JSON.stringify({
+        audio: `/audio/${name}.mp3`,
+        ...(fs.existsSync(words) ? { words: `/audio/${name}.json` } : {}),
+        duration,
+      }).replace(/</g, "\\u003c");
+    }
+  }
+
+  // Spotify share links carry a ?si= tracking token; keep just the episode URL.
+  const podcast = fm.podcast_url ? String(fm.podcast_url).replace(/\?.*$/, "") : "";
+
+  const html = pageHtml({ fm, slug, body: bodyHtml, hasFootnotes, hero, cssVersion, voice, podcast });
   const outFile = path.join(ROOT, `article-${slug}.html`);
   fs.writeFileSync(outFile, html);
 

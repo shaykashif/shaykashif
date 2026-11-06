@@ -23,7 +23,7 @@
   <script>try{var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;if(t==="dark")document.querySelector('meta[name="theme-color"]').content="#151412"}catch(e){}</script>
   <link rel="preload" href="/fonts/aktiv-grotesk-regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/aktiv-grotesk-semibold.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/site.css?v=202611052134" />
+  <link rel="stylesheet" href="/site.css?v=202611052207" />
   <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.webp"}}]},"eagerness":"moderate"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"A Politics of Hope","description":"And how it's cool to be woke","image":"https://shaykas.com/flag-og.webp","author":{"@type":"Person","@id":"https://shaykas.com/#person","name":"Shay Kashif","alternateName":"Shayaan Kashif","url":"https://shaykas.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://shaykas.com/article-a-politics-of-hope"},"datePublished":"2026","inLanguage":"en"}</script>
 </head>
@@ -40,11 +40,17 @@
       <p class="subtitle italic">And how it's cool to be woke</p>
       <p class="subtitle">A layman's musings on the midterms</p>
       <p class="article-byline">Shay Kashif</p>
+      <div class="listen">
+        <a class="listen-spotify" href="https://open.spotify.com/episode/1E4brGdJsau17PgCLyaOTX" target="_blank" rel="noopener" title="Good Morning Planet Earth with Shay Kashif">Listen on Spotify</a>
+      </div>
     </div>
 
     <article class="article-body">
-    <figure class="narrow">
-      <img src="/flag.webp" width="1000" height="1498" alt="The American flag flying outside the Exeter, NH police station" fetchpriority="high" />
+    <figure class="narrow hero-swap">
+      <picture>
+        <source media="(min-width: 860px)" srcset="/flag-og.webp" width="1200" height="630" />
+        <img src="/flag.webp" width="1000" height="1498" alt="The American flag flying outside the Exeter, NH police station" fetchpriority="high" />
+      </picture>
       <figcaption>The American flag outside the Exeter, NH police station. I took this photo the day before winter break on my EOS 300 film camera.</figcaption>
     </figure>
 
@@ -73,6 +79,8 @@
     </article>
   </main>
   <script src="/chrome.js" defer></script>
+  <script type="application/json" id="voiceover">{"audio":"/audio/a-politics-of-hope.mp3","words":"/audio/a-politics-of-hope.json","duration":436.5}</script>
+  <script src="/listen.js" defer></script>
   <script src="/footnotes.js" defer></script>
 </body>
 </html>

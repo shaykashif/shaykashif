@@ -24,7 +24,7 @@ const TYPES = {
   ".js": "text/javascript; charset=utf-8", ".json": "application/json", ".svg": "image/svg+xml",
   ".webp": "image/webp", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".JPG": "image/jpeg",
   ".JPEG": "image/jpeg", ".png": "image/png", ".PNG": "image/png", ".woff2": "font/woff2",
-  ".xml": "application/xml", ".txt": "text/plain; charset=utf-8", ".ico": "image/x-icon",
+  ".xml": "application/xml", ".mp3": "audio/mpeg", ".txt": "text/plain; charset=utf-8", ".ico": "image/x-icon",
 };
 const BLOCKED = /^(\.|scripts\/|drafts\/)/;
 const RELOAD = `<script>new EventSource("/__reload").onmessage=function(){location.reload()}</script>`;
@@ -70,7 +70,16 @@ http
       res.writeHead(200, { "Content-Type": type, "Cache-Control": "no-store" });
       return res.end(html);
     }
-    res.writeHead(200, { "Content-Type": type, "Cache-Control": "no-store" });
+    // Audio needs byte ranges so the browser can seek.
+    const size = fs.statSync(full).size;
+    const range = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || "");
+    if (range) {
+      const start = range[1] ? Number(range[1]) : Math.max(0, size - Number(range[2]));
+      const end = range[1] && range[2] ? Math.min(Number(range[2]), size - 1) : size - 1;
+      res.writeHead(206, { "Content-Type": type, "Cache-Control": "no-store", "Accept-Ranges": "bytes", "Content-Range": `bytes ${start}-${end}/${size}`, "Content-Length": end - start + 1 });
+      return fs.createReadStream(full, { start, end }).pipe(res);
+    }
+    res.writeHead(200, { "Content-Type": type, "Cache-Control": "no-store", "Accept-Ranges": "bytes", "Content-Length": size });
     fs.createReadStream(full).pipe(res);
   })
   .listen(PORT, "127.0.0.1", () => {
