@@ -26,6 +26,7 @@
   var MAIN =
     '<button type="button" class="listen-btn" aria-pressed="false"><span class="listen-ico"></span>' +
     '<span class="listen-label">Listen to this article</span><span class="listen-time"></span></button>' +
+    '<button type="button" class="listen-speed" aria-label="Playback speed">1×</button>' +
     '<button type="button" class="listen-follow" hidden>Follow along</button>';
   var SEEK = '<input type="range" class="listen-seek" min="0" max="1000" value="0" step="1" aria-label="Seek" hidden />';
   // The page may already have a .listen row (with the Spotify link); otherwise make one.
@@ -46,6 +47,7 @@
   fl.hidden = true;
   fl.innerHTML =
     '<button type="button" class="listen-fbtn" aria-label="Play"></button><span class="listen-ftime"></span>' +
+    '<button type="button" class="listen-speed" aria-label="Playback speed">1×</button>' +
     '<button type="button" class="listen-follow" hidden>Follow along</button>' +
     '<input type="range" class="listen-seek" min="0" max="1000" value="0" step="1" aria-label="Seek" />';
   document.body.appendChild(fl);
@@ -57,7 +59,34 @@
   var fbtn = fl.querySelector(".listen-fbtn");
   var ftime = fl.querySelector(".listen-ftime");
   var follows = [box.querySelector(".listen-follow"), fl.querySelector(".listen-follow")];
+  var speedBtns = [box.querySelector(".listen-speed"), fl.querySelector(".listen-speed")];
   var seeks = [box.querySelector(".listen-seek"), fl.querySelector(".listen-seek")];
+
+  // Playback speed: cycles through RATES, and is remembered between visits.
+  var RATES = [1, 1.25, 1.5, 2];
+  var rate = 1;
+  try {
+    var saved = parseFloat(localStorage.getItem("listenRate"));
+    if (RATES.indexOf(saved) > -1) rate = saved;
+  } catch (e) {}
+  function setRate(r, save) {
+    rate = r;
+    audio.defaultPlaybackRate = r;
+    audio.playbackRate = r;
+    audio.preservesPitch = true;
+    audio.webkitPreservesPitch = true;
+    speedBtns.forEach(function (b) {
+      b.textContent = r + "×";
+      b.setAttribute("aria-label", "Playback speed " + r + "x. Change speed");
+    });
+    if (save) try { localStorage.setItem("listenRate", String(r)); } catch (e) {}
+  }
+  speedBtns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      setRate(RATES[(RATES.indexOf(rate) + 1) % RATES.length], true);
+    });
+  });
+  setRate(rate);
 
   function total() {
     return isFinite(audio.duration) && audio.duration > 0 ? audio.duration : cfg.duration || 0;
