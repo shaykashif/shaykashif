@@ -219,6 +219,7 @@ ${hero.banner}
 ${hero.portrait}${body}
     </article>
   </main>
+  <script src="/chrome.js" defer></script>
 ${hasFootnotes ? '  <script src="/footnotes.js" defer></script>\n' : ""}</body>
 </html>
 `;
