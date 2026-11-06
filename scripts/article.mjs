@@ -6,7 +6,7 @@
 //
 // Front matter: title, description, date, kind, image, image_alt, caption,
 // and optionally slug, byline, subtitle_style (italic), subtitle_2 (a second,
-// upright subtitle line).
+// upright subtitle line), og_image (a wide ~1200x630 crop for link previews).
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -152,7 +152,8 @@ function pageHtml({ fm, slug, body, hasFootnotes, hero, cssVersion }) {
   const title = esc(fm.title);
   const desc = esc(fm.description);
   const url = `${SITE}/article-${slug}`;
-  const image = fm.image ? `${SITE}/${String(fm.image).replace(/^\//, "")}` : `${SITE}/Headshot/Headshot.jpg`;
+  const social = fm.og_image || fm.image;
+  const image = social ? `${SITE}/${String(social).replace(/^\//, "")}` : `${SITE}/Headshot/Headshot.jpg`;
   const ld = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "Article",
