@@ -17,13 +17,13 @@
   <meta name="twitter:title" content="What the Masthead Tells Us" />
   <meta name="twitter:description" content="A data-driven look at nepotism and club leadership at Exeter — survey results and analysis by Shay Kashif." />
   <meta name="twitter:image" content="https://shaykas.com/Headshot/Headshot.jpg" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=3" />
   <meta name="color-scheme" content="light dark" />
   <meta name="theme-color" content="#f6f2e6" />
   <script>try{var t=localStorage.getItem("theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.dataset.theme=t;if(t==="dark")document.querySelector('meta[name="theme-color"]').content="#151412"}catch(e){}</script>
   <link rel="preload" href="/fonts/aktiv-grotesk-regular.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/fonts/aktiv-grotesk-semibold.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="/site.css?v=20261007a" />
+  <link rel="stylesheet" href="/site.css?v=20261105a" />
   <script type="speculationrules">{"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/*.webp"}}]},"eagerness":"moderate"}]}</script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What the Masthead Tells Us","description":"A data-driven look at nepotism and club leadership at Exeter — survey results and analysis by Shay Kashif.","image":"https://shaykas.com/Headshot/Headshot.jpg","author":{"@type":"Person","@id":"https://shaykas.com/#person","name":"Shay Kashif","alternateName":"Shayaan Kashif","url":"https://shaykas.com/"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://shaykas.com/article-masthead"},"inLanguage":"en"}</script>
 </head>
@@ -168,7 +168,7 @@
         Having identified the social forces that drive the causes of inequity in Exeter's clubs and the general lack of student confidence in Exeter's clubs, the logical next step is to ask <em>who</em> bears the brunt of these systemic issues. This has been the main focus of my research for the past few months. In a longitudinal study of two selected clubs—the Daniel Webster Debate Society (DWDS), and <em>The Exonian</em>—I collected data on the gender and ethnic distributions of the leadership of these clubs over the past couple of years to see if there are any noticeable patterns within these groups. I myself, as a member of <em>The Exonian</em>'s 147th Editorial Board and a former debater, was one of these statistics.
       </p>
       <p>
-        My dataset for <em>The Exonian</em> contained every Editorial Board since 2011—I had access to the mastheads of the previous three boards, and pulled the rest of the boards off of a historical version of <em>The Exonian</em>'s Wikipedia page. I compiled the names from all of these boards into a single spreadsheet,<sup>1</sup> and sorted all individuals listed as having participated in <em>The Exonian</em>'s Editorial Board by their board number, position held, and the year of their board.
+        My dataset for <em>The Exonian</em> contained every Editorial Board since 2011—I had access to the mastheads of the previous three boards, and pulled the rest of the boards off of a historical version of <em>The Exonian</em>'s Wikipedia page. I compiled the names from all of these boards into a single spreadsheet,<sup data-fn>1</sup> and sorted all individuals listed as having participated in <em>The Exonian</em>'s Editorial Board by their board number, position held, and the year of their board.
       </p>
       <p>
         The most immediate observation was the substantial increase in the <em>size</em> of the Editorial Board in the last 15 years. In 2011, there were 10 individuals on <em>The Exonian</em>'s Editorial Board. That number has steadily gone up since then, increasing to 32 this year. The size of the Editorial Board has therefore roughly tripled since 2011. This can likely be partially explained by <em>The Exonian</em>'s policy of giving all upper board applicants a position, ensuring no one is turned away.
@@ -188,7 +188,7 @@
     <article class="prose">
 
       <p>
-        As for demographics, I faced an issue when it came to identifying demographics for historical boards beyond the 146th. Logistically, it would be impossible to individually contact each and every member of these boards to confirm their identities, forcing me to resort to demographic inference, a method commonly used by researchers for large-scale population studies. For this study, demographic inference was conducted using Claude Sonnet, a large language model. Recent research has found that LLM-based name-ethnicity classification achieves up to 84.7% accuracy, outperforming the widely-used BISG (Bayesian Improved Surname Geocoding) method at 68.2% on balanced samples. Importantly for this study's context, BISG is known to systematically misclassify affluent minorities as White—a bias that would be especially problematic in an elite boarding school environment like that of Exeter. LLM-based inference does not exhibit this same income-correlated bias. That said, all name-based tools carry limitations: they cannot capture multiracial identity, struggle with names that cross cultural lines, and may encode training data biases.<sup>2</sup> For this reason, findings from inferred boards should be understood as aggregate directional estimates rather than precise counts. The most critical comparisons in this study, which are done against Exeter's actual student body composition from 2024-2025, therefore use verified data from the four most recent boards only.
+        As for demographics, I faced an issue when it came to identifying demographics for historical boards beyond the 146th. Logistically, it would be impossible to individually contact each and every member of these boards to confirm their identities, forcing me to resort to demographic inference, a method commonly used by researchers for large-scale population studies. For this study, demographic inference was conducted using Claude Sonnet, a large language model. Recent research has found that LLM-based name-ethnicity classification achieves up to 84.7% accuracy, outperforming the widely-used BISG (Bayesian Improved Surname Geocoding) method at 68.2% on balanced samples. Importantly for this study's context, BISG is known to systematically misclassify affluent minorities as White—a bias that would be especially problematic in an elite boarding school environment like that of Exeter. LLM-based inference does not exhibit this same income-correlated bias. That said, all name-based tools carry limitations: they cannot capture multiracial identity, struggle with names that cross cultural lines, and may encode training data biases.<sup data-fn>2</sup> For this reason, findings from inferred boards should be understood as aggregate directional estimates rather than precise counts. The most critical comparisons in this study, which are done against Exeter's actual student body composition from 2024-2025, therefore use verified data from the four most recent boards only.
       </p>
       <p>
         An evaluation of gender, across all boards, reveals that the gender divide has remained relatively equal over the years. Statistically, <em>The Exonian</em> actually skews slightly female, however this is not significant enough to be anything more than just slight year-by-year variation.
@@ -596,5 +596,6 @@
   
   });
   </script>
+<script src="/footnotes.js" defer></script>
 </body>
 </html>

@@ -4,8 +4,21 @@
     {
       "name": "site",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "8765"],
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765"
+      ],
       "port": 8765
+    },
+    {
+      "name": "article-dev",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "scripts/dev.mjs",
+        "drafts/Copy of sample-article.md"
+      ],
+      "port": 8787
     }
   ]
 }
